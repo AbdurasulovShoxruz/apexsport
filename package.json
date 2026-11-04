@@ -1,0 +1,8 @@
+{
+  "name": "apex-sport",
+  "version": "1.0.0",
+  "private": true,
+  "description": "APEX SPORT: Telegram Mini App store for men's sportswear",
+  "engines": { "node": ">=20" },
+  "scripts": { "test": "node scripts/test.js && node scripts/test-stock.js && node scripts/test-sections.js && node scripts/test-viloyat.js && node scripts/test-extra.js" }
+}
