@@ -205,25 +205,98 @@ input,select{font:inherit;color:inherit}
 .pr s{color:var(--mute);opacity:.7;margin-right:4px}.off{position:absolute;left:8px;top:8px;z-index:2;font-size:11px;background:var(--ink);color:var(--bg);border-radius:999px;padding:2px 9px}
 .promo{display:flex;gap:10px;align-items:center;margin-top:16px}.promo .inp{flex:1;text-transform:uppercase;font-size:14px}
 
-/* ---- APEX SPORT theme ---- */
-h1,h2,h3,.ft-logo{text-transform:uppercase;font-style:italic;font-weight:700!important;letter-spacing:.01em}
-.pdp h2{font-size:40px!important}
-.hero{position:relative;overflow:hidden;background:#0B0F14 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 220'%3E%3Ccircle cx='300' cy='72' r='26' fill='%23FF5B1F'/%3E%3Cpath d='M-10 220 90 92l44 58 52-86 70 96 36-40 120 100z' fill='%231B2430'/%3E%3Cpath d='M70 220 170 98l56 72 46-52 150 102z' fill='%23121A23'/%3E%3C/svg%3E") no-repeat right bottom/100% auto;color:#fff;padding:38px 24px 130px}
-.hero .kicker{color:var(--accent);font-weight:600}
-.hero h1{font-style:italic;font-size:48px;line-height:.96;margin:14px 0 12px;overflow-wrap:anywhere}
-.hero p{color:#B7BFCB;max-width:260px}
-.hero .pill{background:var(--accent);color:#fff;margin-bottom:8px}
-.hero .pill.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
-.pill{background:var(--accent);color:var(--on-accent);border-radius:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:600;font-size:13px}
-.pill.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink)}
-.chip{border-radius:8px;text-transform:uppercase;letter-spacing:.07em;font-size:12px;font-weight:500}
-.chip.on{background:var(--accent);border-color:var(--accent);color:#fff}
-.badge{background:var(--accent);color:#fff}
-.banner{background:var(--accent)!important;color:#fff!important}
-.art{border-radius:10px}
-.card .nm{font-weight:500}
-.off.nw{background:var(--accent);color:#fff}
-.ft-logo{font-size:36px}
+/* ---- APEX SPORT theme: bold, dark, slanted (Nike / Adidas / Under Armour inspired) ---- */
+:root{--r:2px;--spot:#fff}
+[data-theme=dark]{--spot:#46525F;--tile:#1A212A}
+[data-theme=dark] .art svg g{stroke:rgba(255,255,255,.4)}[data-theme=dark] .art svg .ln{stroke:rgba(255,255,255,.35)}
+h1,h2,h3,.ft-logo{text-transform:uppercase;font-style:italic;font-weight:700!important;letter-spacing:.005em;line-height:.95}
+.pdp h2{font-size:44px!important}
+.top{border-bottom:1px solid var(--line);background:var(--bg)}
+/* slanted buttons */
+.pill{background:var(--accent);color:#fff;border-radius:0;text-transform:uppercase;letter-spacing:.1em;font-weight:600;font-size:13px;padding:15px 30px;
+  clip-path:polygon(12px 0,100% 0,calc(100% - 12px) 100%,0 100%)}
+.pill:not(.sm):not(.ghost):not(.full)::after{content:"\2192";font-size:16px;margin-left:2px}
+.pill.full{padding:18px 30px;font-size:14px}
+.pill.sm{padding:10px 18px;font-size:11px;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.pill.ghost{background:var(--ink);color:var(--bg);border:0}
+.pill[disabled]{background:var(--tile);color:var(--mute);opacity:1}
+/* tabs instead of pills */
+.chips{gap:22px;padding:24px 0 0;border-bottom:1px solid var(--line)}
+.chip{border:0;border-radius:0;padding:0 0 12px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--mute);border-bottom:3px solid transparent;background:none!important}
+.chip.on{color:var(--ink);border-bottom-color:var(--accent)}
+.badge{background:var(--accent);color:#fff;border-radius:0}
+.banner{background:var(--accent)!important;color:#fff!important;border-radius:0!important;text-transform:uppercase;letter-spacing:.08em;font-weight:600;font-size:12px!important}
+/* hero: full bleed */
+.hero{position:relative;overflow:hidden;margin:0 -20px;border-radius:0;color:#fff;min-height:470px;padding:44px 20px 150px;
+  background:#0B0F14 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 240'%3E%3Cpath d='M-10 240 80 110l46 56 58-92 72 100 40-44 114 110z' fill='%23161F2A'/%3E%3Cpath d='M60 240 170 96l60 78 50-56 140 122z' fill='%23101720'/%3E%3C/svg%3E") no-repeat right bottom/115% auto}
+.hero::before{content:"APEX";position:absolute;right:-14px;top:14px;font:italic 700 170px/1 var(--serif);color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.13);pointer-events:none}
+.hero::after{content:"";position:absolute;right:-60px;bottom:-30px;width:120px;height:470px;background:var(--accent);transform:skewX(-20deg);opacity:.95;z-index:0}
+.hero>*{position:relative;z-index:1}
+.hero .kicker{color:var(--accent);font-weight:700;letter-spacing:.3em;font-size:12px}
+.hero h1{font-size:54px;line-height:.92;margin:16px 0 16px;max-width:100%;text-shadow:0 2px 0 rgba(0,0,0,.15)}
+.hero p{color:#C3CAD4;max-width:240px;font-size:16px}
+.hero .pill{margin-bottom:10px}
+.hero .pill.ghost{background:#fff;color:#0B0F14}
+/* ticker */
+.marq{margin:0 -20px;background:var(--accent);color:#fff;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(0,0,0,.2)}
+.tk{display:inline-block;padding:11px 0;font:italic 700 15px var(--serif);letter-spacing:.12em;text-transform:uppercase;animation:tk 26s linear infinite}
+.tk span{padding:0 18px}.tk b{font-style:normal;opacity:.7}
+@keyframes tk{to{transform:translateX(-50%)}}
+/* category tiles */
+.ctiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
+.ctile{position:relative;overflow:hidden;aspect-ratio:1/1;background:radial-gradient(circle at 70% 35%,var(--spot),var(--tile) 75%);text-align:left;padding:14px;display:flex;flex-direction:column;justify-content:flex-end}
+.ctile:first-child{grid-column:span 2;aspect-ratio:2/.95}
+.ctile .ct-art{position:absolute;right:6%;top:6%;width:52%;opacity:1}
+.ctile:first-child .ct-art{width:30%;right:8%}
+.ctile .ct-art svg,.ctile .ct-art img{width:100%;height:auto;display:block}
+.ctile .cn{position:relative;font-style:italic;font-weight:700;font-family:var(--serif);font-size:clamp(14px,4.4vw,21px);line-height:1;text-transform:uppercase;max-width:100%;overflow-wrap:break-word}
+.ctile:first-child .cn{font-size:30px}
+.ctile .cc{position:relative;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:6px}
+.ctile::after{content:"";position:absolute;left:0;bottom:0;width:46px;height:4px;background:var(--accent);transition:width .2s}
+.ctile:first-child::after{width:46px}.ctile:active::after{width:100%}
+/* product cards: square, spotlight, bold type */
+.grid{gap:26px 8px}
+.rail{gap:8px}
+.art{border-radius:0;background:radial-gradient(circle at 50% 40%,var(--spot),var(--tile) 72%)}
+.art::before{content:"APEX";position:absolute;left:-3%;top:4%;font:italic 700 84px/1 var(--serif);color:var(--ink);opacity:.045;pointer-events:none}
+.art svg{position:relative;filter:drop-shadow(0 10px 14px rgba(0,0,0,.28))}
+.card{gap:6px}
+.card .ck{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-top:4px}
+.card .nm{font:600 15px/1.2 var(--sans);text-transform:uppercase;letter-spacing:.01em}
+.card .pr{color:var(--ink);font-weight:700;font-size:15px;margin-top:0}
+.card .pill{margin-top:4px}
+.off{border-radius:0;background:var(--ink);color:var(--bg);font-weight:700;letter-spacing:.06em;left:0;top:0;padding:4px 10px;font-size:11px}
+.off.nw{background:var(--accent)!important;color:#fff!important;border:0!important;font-size:11px!important;padding:4px 10px!important}
+.off ~ .nw{top:26px!important}
+.hrt{border-radius:0;background:transparent}
+.rsec{margin-top:34px}
+.rsec h3,.sech{font-size:30px;margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.rsec h3::before{content:"";width:8px;height:.85em;background:var(--accent);transform:skewX(-14deg);flex:none}
+.rail .card{flex:0 0 52%;max-width:230px}
+/* product page */
+.pdp .art{aspect-ratio:1/1.05}
+.price{font:700 24px var(--sans)}
+.opt{border-radius:0;min-width:54px;height:48px;font-weight:600;border:1px solid var(--line);background:var(--card)}
+.opt.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.sw{border-radius:0}.sw.on::after{border-radius:0}
+.label{letter-spacing:.24em;font-weight:600}
+.dock{background:var(--bg);border-top:1px solid var(--line);padding-top:12px}
+/* sheets, forms, misc */
+.sheet{border-radius:0;border-top:4px solid var(--accent)}
+.grab{display:none}
+.panel,.choice button,.pay button,.owner,.ft-map,.map-wrap,#smap{border-radius:0}
+.qty{border-radius:0}.tag,.field span.tag{border-radius:0}
+.tick-ok,.tick{border-radius:0}.tick{background:var(--accent);color:#fff;transform:skewX(-8deg)}
+.toast{border-radius:0;background:var(--accent);color:#fff;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+.tools .inp{border-radius:0;font-size:14px}
+.sum .tot{font:700 22px var(--sans);border-top:2px solid var(--ink)}
+.ft{border-top:4px solid var(--accent)}
+.ft-logo{font-size:42px}
+.ft-chip{border-radius:0}
+.bar{border-radius:0;height:4px}.bar i{background:var(--accent)}
+.choice button.on,.pay button.on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.on .dot{border-color:var(--accent)}
+.inp:focus{border-bottom-color:var(--accent)}
 </style>
 </head>
 <body>
@@ -307,9 +380,9 @@ Object.assign(I.uz,{vPhoneNote:'Telegramdagi tasdiqlangan raqamingiz. Xohlasangi
 Object.assign(I.ru,{vPhoneNote:'Ваш подтверждённый номер в Telegram. Можно изменить.',viloyat:'В регионы',viloyatSub:'BTS Express',vilPrepaid:'100% предоплата',vilBts:'Доставка в регионы осуществляется только службой BTS Express. Сначала оплата, затем заказ принимается.',payNow:'Оплатить',payTitle:'Онлайн-оплата',payWith:'Способ оплаты',payDemo:'Демо: в реальном проекте откроется страница оплаты Click / Payme.',payBtn:'Оплатить',vTitle:'Данные для доставки',vPaid:'Оплата получена',region:'Область',pickRegion:'Выберите область',vAddress:'Адрес или филиал BTS',vSubmit:'Подтвердить заказ',btsDone:'Отправим через BTS Express. Номер отслеживания пришлём сюда.',vFill:'Заполнить данные',vExpired:'Время оплаты истекло, заказ отменён',payOff:'Онлайн-оплата не подключена',st_paid:'Оплачен',st_awaiting_payment:'Ожидает оплаты'});
 Object.assign(I.uz,{qolmadi:'Qolmadi',notPaidYet:'To\u2018lov hali tasdiqlanmadi',checkPay:'To\u2018lovni tekshirish',cancelOrder:'Buyurtmani bekor qilish',cancelled:'Buyurtma bekor qilindi',share:'Do\u2018stga yuborish',recent:'Yaqinda ko\u2018rilgan',tooMany:'Juda ko\u2018p urinish, birozdan keyin qayta urining'});
 Object.assign(I.ru,{qolmadi:'Больше нет в наличии',notPaidYet:'Оплата ещё не подтверждена',checkPay:'Проверить оплату',cancelOrder:'Отменить заказ',cancelled:'Заказ отменён',share:'Отправить другу',recent:'Недавно просмотренные',tooMany:'Слишком много попыток, повторите позже'});
-Object.assign(I.en,{tshirts:'T-shirts',hoodies:'Hoodies',shorts:'Shorts',tracksuits:'Tracksuits',training:'Training',running:'Running',lifestyle:'Everyday',bags:'Bags',caps:'Caps',bottles:'Bottles'});
-Object.assign(I.ru,{tshirts:'Футболки',hoodies:'Худи',shorts:'Шорты',tracksuits:'Спортивные костюмы',training:'Тренировка',running:'Бег',lifestyle:'Повседневное',bags:'Сумки',caps:'Кепки',bottles:'Бутылки'});
-Object.assign(I.uz,{tshirts:'Futbolkalar',hoodies:'Hudilar',shorts:'Shortilar',tracksuits:'Sport kostyumlari',training:'Mashg\u2018ulot',running:'Yugurish',lifestyle:'Kundalik',bags:'Sumkalar',caps:'Kepkalar',bottles:'Butilkalar'});
+Object.assign(I.en,{tick:'Reach for the summit|Free delivery over {n}|Delivery across Tashkent|New collection Autumn / Winter 2026',tshirts:'T-shirts',hoodies:'Hoodies',shorts:'Shorts',tracksuits:'Tracksuits',training:'Training',running:'Running',lifestyle:'Everyday',bags:'Bags',caps:'Caps',bottles:'Bottles'});
+Object.assign(I.ru,{tick:'Стремись к вершине|Бесплатная доставка от {n}|Доставка по Ташкенту|Новая коллекция Осень / Зима 2026',tshirts:'Футболки',hoodies:'Худи',shorts:'Шорты',tracksuits:'Спортивные костюмы',training:'Тренировка',running:'Бег',lifestyle:'Повседневное',bags:'Сумки',caps:'Кепки',bottles:'Бутылки'});
+Object.assign(I.uz,{tick:'Cho\u2018qqiga intil|{n} dan bepul yetkazish|Toshkent bo\u2018ylab yetkazib berish|Yangi kolleksiya Kuz / Qish 2026',tshirts:'Futbolkalar',hoodies:'Hudilar',shorts:'Shortilar',tracksuits:'Sport kostyumlari',training:'Mashg\u2018ulot',running:'Yugurish',lifestyle:'Kundalik',bags:'Sumkalar',caps:'Kepkalar',bottles:'Butilkalar'});
 const SUBOF={tee:'training',shirt:'lifestyle',hoodie:'lifestyle',knit:'lifestyle',trousers:'lifestyle',shorts:'running',tracksuit:'training',duffel:'bags',tote:'bags',cap:'caps',bottle:'bottles',sneaker:'running',boot:'lifestyle'};
 /* Categories and sections set in the admin panel (null = built-in lists) */
 let SECS=null;
@@ -433,7 +506,7 @@ const S = {
   bag: (()=>{ try{ return JSON.parse(localStorage.getItem('apex_bag')||'[]'); }catch(e){ return []; } })(),
   co:{name:(tgUser&&[tgUser.first_name,tgUser.last_name].filter(Boolean).join(' '))||'',phone:'',type:'courier',district:'',address:'',pay:'cash',lat:null,lon:null,pin:false},
   favs:(()=>{ try{ return JSON.parse(localStorage.getItem('apex_favs')||'[]'); }catch(e){ return []; } })(),
-  theme:(()=>{ try{ const s=localStorage.getItem('apex_theme'); if(s==='dark'||s==='light') return s; }catch(e){} return (tg&&tg.colorScheme)||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'); })(),
+  theme:(()=>{ try{ const s=localStorage.getItem('apex_theme'); if(s==='dark'||s==='light') return s; }catch(e){} return 'dark'; })(),
   rv:(()=>{ try{ return JSON.parse(localStorage.getItem('apex_rv')||'[]'); }catch(e){ return []; } })(), promo:null, vm:0, vo:null, vf:{region:'',tuman:'',name:'',phone:'',address:''}, q:'', sort:'def', sub:'all', myOrders:null, err:{}, order:null, live:false, verified:false, phone:'', bot:'', demoNote:false, busy:false, addrAuto:true, verifyMsg:'', map:null
 };
 const t = k => (I[S.lang][k] ?? I.uz[k] ?? k);
@@ -447,7 +520,7 @@ const disc = () => S.promo ? Math.round(subtotal()*S.promo.percent/100) : 0;
 const shipFee = () => !S.bag.length ? 0 : S.co.type==='pickup' ? 0 : S.co.type==='viloyat' ? VILOYAT_FEE : subtotal()>=FREE_OVER ? 0 : DELIVERY_FEE;
 const view = () => S.nav[S.nav.length-1];
 function applyTheme(){
-  document.documentElement.dataset.theme=S.theme; const c=S.theme==='dark'?'#121212':'#F7F5F0';
+  document.documentElement.dataset.theme=S.theme; const c=S.theme==='dark'?'#0B0F14':'#F4F5F3';
   const m=document.querySelector('meta[name=theme-color]'); if(m) m.content=c;
   if(tg){ try{ tg.setHeaderColor(c); tg.setBackgroundColor(c); }catch(e){} }
 }
@@ -469,7 +542,7 @@ function topbar(){
 function card(p,rail){
   return `<div class="card">
     ${p.old?`<span class="off">\u2212${Math.round(100-p.price/p.old*100)}%</span>`:''}${p.isNew?`<span class="off nw">${t('newTag')}</span>`:''}${heart(p.id)}<button class="art${(pphotos(p).length>1)?' gal':''}" data-a="open" data-v="${p.id}" aria-label="${p.name[S.lang]}">${(pphotos(p).length>1)?strip(pphotos(p)):art(p)}</button>
-    <div class="nm">${p.name[S.lang]}</div><div class="pr">${p.old?`<s>${fmt(p.old)}</s>`:''}${fmt(p.price)}</div>
+    <div class="ck">${sname(p.cat)}</div><div class="nm">${p.name[S.lang]}</div><div class="pr">${p.old?`<s>${fmt(p.old)}</s>`:''}${fmt(p.price)}</div>
     ${p.stock===0?`<button class="pill sm" disabled>${t('soldOut')}</button>`:`<button class="pill sm" data-a="quick" data-v="${p.id}">${t('quickBag')}</button>`}
   </div>`;
 }
@@ -512,10 +585,21 @@ function rails(){
   const rail=(title,L)=>L.length?`<section class="rsec"><h3>${title}</h3><div class="rail">${L.map(card).join('')}</div></section>`:'';
   return rail(t('newProducts'),nw)+rail(t('discProducts'),ds);
 }
+function ticker(){
+  const x=t('tick').replace('{n}',fmt(FREE_OVER)).split('|').map(z=>`<span>${z}</span><b>\u2726</b>`).join('');
+  return `<div class="marq"><div class="tk">${x}${x}${x}${x}</div></div>`;
+}
+function ctiles(){
+  if(S.cat!=='all') return '';
+  const cs=SECS?SECS.cats:['tshirts','hoodies','shorts','tracksuits','accessories'];
+  return `<div class="ctiles">${cs.map(c=>{const L=P.filter(p=>p.cat===c); if(!L.length) return ''; const f=L[0];
+    return `<button class="ctile" data-a="cat" data-v="${c}"><span class="ct-art">${art(f)}</span><span class="cn">${sname(c)}</span><span class="cc">${L.length} ${t('items')}</span></button>`;}).join('')}</div>`;
+}
 function home(){
   const bn=CFG.banner&&CFG.banner[S.lang]?`<div class="banner">${CFG.banner[S.lang]}</div>`:'';
   return `${bn}<section class="hero"><div class="kicker">${t('kicker')}</div><h1>${t('heroTitle')}</h1><p>${t('heroSub')}</p>
     <button class="pill" data-a="shop">${t('shopNow')}</button><button class="pill ghost" data-a="store">${t('ourStore')}</button></section>
+    ${ticker()}${ctiles()}
     ${rails()}${recent()}
     <div class="chips" id="shop">${['all',...(SECS?SECS.cats:['tshirts','hoodies','shorts','tracksuits','accessories'])].map(c=>`<button class="chip ${S.cat===c?'on':''}" data-a="cat" data-v="${c}">${c==='all'?t('all'):sname(c)}</button>`).join('')}</div>
     ${S.cat!=='all'?`<div class="chips" style="padding-top:2px">${['all',...[...new Set(P.filter(p=>p.cat===S.cat).map(subOf))].filter(Boolean).sort((a,b)=>SECS?SECS.subs.indexOf(a)-SECS.subs.indexOf(b):0)].map(c=>`<button class="chip ${S.sub===c?'on':''}" data-a="sub" data-v="${c}">${c==='all'?t('all'):sname(c)}</button>`).join('')}</div>`:''}
