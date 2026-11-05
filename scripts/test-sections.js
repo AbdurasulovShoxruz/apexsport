@@ -49,6 +49,6 @@ const prod = (extra) => ({ id: 5, name: { uz: 'A', ru: 'B' }, cat: 'men', art: '
   assert.deepStrictEqual(saved.size_stock, { 47: 3, 48: 0 }); assert.strictEqual(saved.stock, 3); console.log('  ok per-size stock works for custom sizes');
   r = await call({ action: 'product_save', product: prod({ sizes: 'custom', custom_sizes: '' }) }, tok); assert.strictEqual(r.c, 400);
   r = await call({ action: 'product_save', product: prod({ sizes: 'custom', custom_sizes: 'WAYTOOLONGSIZE' }) }, tok); assert.strictEqual(r.c, 400); console.log('  ok empty / too long custom sizes rejected');
-  r = await call({ action: 'product_save', product: prod({ sizes: 'shoes' }) }, tok); assert.strictEqual(saved.sizes.length, 11); console.log('  ok shoe sizes still work');
+  r = await call({ action: 'product_save', product: prod({ sizes: 'shoes' }) }, tok); assert.strictEqual(saved.sizes.length, 8); console.log('  ok shoe sizes still work');
   console.log('\nSections checks passed');
 })().catch((e) => { console.error('FAIL', e); process.exit(1); });

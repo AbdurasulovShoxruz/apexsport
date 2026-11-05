@@ -208,7 +208,7 @@ input,select{font:inherit;color:inherit}
 /* ---- APEX SPORT theme: bold, dark, slanted (Nike / Adidas / Under Armour inspired) ---- */
 :root{--r:2px;--spot:#fff}
 [data-theme=dark]{--spot:#46525F;--tile:#1A212A}
-[data-theme=dark] .art svg g{stroke:rgba(255,255,255,.4)}[data-theme=dark] .art svg .ln{stroke:rgba(255,255,255,.35)}
+
 h1,h2,h3,.ft-logo{text-transform:uppercase;font-style:italic;font-weight:700!important;letter-spacing:.005em;line-height:.95}
 .pdp h2{font-size:44px!important}
 .top{border-bottom:1px solid var(--line);background:var(--bg)}
@@ -242,24 +242,22 @@ h1,h2,h3,.ft-logo{text-transform:uppercase;font-style:italic;font-weight:700!imp
 .tk{display:inline-block;padding:11px 0;font:italic 700 15px var(--serif);letter-spacing:.12em;text-transform:uppercase;animation:tk 26s linear infinite}
 .tk span{padding:0 18px}.tk b{font-style:normal;opacity:.7}
 @keyframes tk{to{transform:translateX(-50%)}}
-/* category tiles */
+/* category tiles: cover photos */
 .ctiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}
-.ctile{position:relative;overflow:hidden;aspect-ratio:1/1;background:radial-gradient(circle at 70% 35%,var(--spot),var(--tile) 75%);text-align:left;padding:14px;display:flex;flex-direction:column;justify-content:flex-end}
-.ctile:first-child{grid-column:span 2;aspect-ratio:2/.95}
-.ctile .ct-art{position:absolute;right:6%;top:6%;width:52%;opacity:1}
-.ctile:first-child .ct-art{width:30%;right:8%}
-.ctile .ct-art svg,.ctile .ct-art img{width:100%;height:auto;display:block}
-.ctile .cn{position:relative;font-style:italic;font-weight:700;font-family:var(--serif);font-size:clamp(14px,4.4vw,21px);line-height:1;text-transform:uppercase;max-width:100%;overflow-wrap:break-word}
-.ctile:first-child .cn{font-size:30px}
-.ctile .cc{position:relative;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:6px}
+.ctile{position:relative;overflow:hidden;aspect-ratio:1/1;background:linear-gradient(135deg,#eceef0,#c9ced4);color:#0B0F14;text-align:left;padding:14px;display:flex;flex-direction:column;justify-content:flex-end}
+.ctile.wide{grid-column:span 2;aspect-ratio:2/.95}
+.ctile .ct-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ctile::before{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(236,238,240,.9) 0%,rgba(236,238,240,0) 48%)}
+.ctile .cn{position:relative;font-style:italic;font-weight:700;font-family:var(--serif);font-size:clamp(13px,3.9vw,19px);line-height:1.02;text-transform:uppercase;max-width:62%;overflow-wrap:break-word}
+.ctile.wide .cn{font-size:30px}
+.ctile .cc{position:relative;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5b6470;margin-top:6px}
 .ctile::after{content:"";position:absolute;left:0;bottom:0;width:46px;height:4px;background:var(--accent);transition:width .2s}
-.ctile:first-child::after{width:46px}.ctile:active::after{width:100%}
+.ctile:active::after{width:100%}
 /* product cards: square, spotlight, bold type */
 .grid{gap:26px 8px}
 .rail{gap:8px}
 .art{border-radius:0;background:radial-gradient(circle at 50% 40%,var(--spot),var(--tile) 72%)}
-.art::before{content:"APEX";position:absolute;left:-3%;top:4%;font:italic 700 84px/1 var(--serif);color:var(--ink);opacity:.045;pointer-events:none}
-.art svg{position:relative;filter:drop-shadow(0 10px 14px rgba(0,0,0,.28))}
+.art.noimg::after{content:"APEX";font:italic 700 54px/1 var(--serif);letter-spacing:.04em;color:var(--mute);opacity:.45}
 .card{gap:6px}
 .card .ck{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute);margin-top:4px}
 .card .nm{font:600 15px/1.2 var(--sans);text-transform:uppercase;letter-spacing:.01em}
@@ -417,7 +415,7 @@ const DISTRICTS = ['Yunusobod','Mirzo Ulug\u2018bek','Chilonzor','Yakkasaroy','S
 
 /* ---------- Data ---------- */
 const CL = ['S','M','L','XL','XXL'];
-const SH = ['36','37','38','39','40','41','42','43','44','45','46'];
+const SH = ['39','40','41','42','43','44','45','46'];
 const P = [
  {id:1,cat:'tshirts',sub:'training',art:'tee',price:189000,mat:'dryfit',sizes:CL,colors:['#111111','#FFFFFF','#FF5B1F'],isNew:true,
   name:{en:'Summit Dry-Fit T-shirt',ru:'Футболка Summit Dry-Fit',uz:'Summit Dry-Fit futbolka'}},
@@ -444,32 +442,18 @@ const P = [
  {id:12,cat:'accessories',sub:'caps',art:'cap',price:99000,mat:'polyester',sizes:null,colors:['#111111','#FFFFFF','#FF5B1F'],
   name:{en:'Apex Run Cap',ru:'Кепка Apex Run',uz:'Apex Run kepka'}},
  {id:13,cat:'accessories',sub:'bottles',art:'bottle',price:89000,mat:'synthetic',sizes:null,colors:['#111111','#FF5B1F'],
-  name:{en:'Apex Shaker Bottle',ru:'Шейкер Apex',uz:'Apex shaker butilka'}}
+  name:{en:'Apex Shaker Bottle',ru:'Шейкер Apex',uz:'Apex shaker butilka'}},
+ {id:14,cat:'shoes',sub:'running',art:'sneaker',price:649000,mat:'mesh',sizes:SH,colors:['#111111','#FFFFFF','#FF5B1F'],isNew:true,
+  name:{en:'Apex Runner Sneakers',ru:'Кроссовки Apex Runner',uz:'Apex Runner krossovka'}},
+ {id:15,cat:'shoes',sub:'training',art:'sneaker',price:589000,mat:'synthetic',sizes:SH,colors:['#111111','#6B7280'],
+  name:{en:'Peak Trainer Shoes',ru:'Кроссовки Peak Trainer',uz:'Peak Trainer krossovka'}},
+ {id:16,cat:'shoes',sub:'lifestyle',art:'boot',price:729000,mat:'leather',sizes:SH,colors:['#3F5B3A','#111111'],
+  name:{en:'Summit Trail Boots',ru:'Трекинговые ботинки Summit',uz:'Summit trail botinka'}}
 ];
 const DELIVERY_FEE = CFG.fees.delivery, FREE_OVER = CFG.fees.freeOver, VILOYAT_FEE = CFG.fees.viloyat;
 const REGIONS = ["Qoraqalpog‘iston Respublikasi", "Andijon viloyati", "Buxoro viloyati", "Farg‘ona viloyati", "Jizzax viloyati", "Xorazm viloyati", "Namangan viloyati", "Navoiy viloyati", "Qashqadaryo viloyati", "Samarqand viloyati", "Sirdaryo viloyati", "Surxondaryo viloyati", "Toshkent viloyati"];
 const qa = x => String(x==null?'':x).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 
-/* silhouettes: viewBox 0 0 100 125 */
-const SHAPES = {
- tracksuit:`<path d="M28 6 40 2 50 12 60 2 72 6 90 40 80 46 72 30V60H28V30L20 46 10 40Z"/><path d="M32 66H68L72 120H55L50 88 45 120H28Z"/><path class="ln" d="M50 12V60M32 74H68"/>`,
- duffel:`<path d="M12 56Q12 44 24 44H76Q88 44 88 56V96Q88 104 80 104H20Q12 104 12 96Z"/><path class="ln" d="M32 44Q32 26 50 26Q68 26 68 44M12 68H88M42 68V80H58V68" fill="none"/>`,
- bottle:`<path d="M42 8H58V18Q68 24 68 36V108Q68 116 60 116H40Q32 116 32 108V36Q32 24 42 18Z"/><path class="ln" d="M32 52H68M32 92H68M42 8V18M58 8V18"/>`,
- tee:`<path d="M30 20 42 14Q50 24 58 14L70 20 90 40 80 50 70 43V108H30V43L20 50 10 40Z"/>`,
- shirt:`<path d="M30 20 42 14 50 26 58 14 70 20 92 92 80 96 70 52V110H30V52L20 96 8 92Z"/><path class="ln" d="M50 26V110M42 14 50 26 58 14"/>`,
- hoodie:`<path d="M30 22 40 17H60L70 22 92 80 80 85 70 52V108H30V52L20 85 8 80Z"/><path d="M38 18Q50 -2 62 18Q50 32 38 18Z"/><path class="ln" d="M40 78H60V96H40Z"/>`,
- knit:`<path d="M30 18 42 12Q50 22 58 12L70 18 92 82 80 86 70 52V102H30V52L20 86 8 82Z"/><path class="ln" d="M30 96H70M30 100H70"/>`,
- trousers:`<path d="M32 14H68L73 112H55L50 46 45 112H27Z"/><path class="ln" d="M32 22H68"/>`,
- shorts:`<path d="M30 18H70L75 74H54L50 44 46 74H25Z"/><path class="ln" d="M30 25H70"/>`,
- skirt:`<path d="M36 20H64L84 108H16Z"/><path class="ln" d="M36 20 26 108M44 20 40 108M56 20 60 108M64 20 74 108"/>`,
- dress:`<path d="M41 10H46L50 26 54 10H59L64 36 60 52 86 114H14L40 52 36 36Z"/><path class="ln" d="M40 52H60"/>`,
- coat:`<path d="M30 14 44 9 50 24 56 9 70 14 94 104 82 108 72 56V118H28V56L18 108 6 104Z"/><path class="ln" d="M50 24V118M50 60H58M50 78H58M50 96H58"/>`,
- sneaker:`<path d="M8 84V64Q8 58 15 57L33 54Q40 40 54 44L58 55Q72 58 86 68Q95 73 93 83V88Q93 92 88 92H13Q8 92 8 88Z"/><path class="ln" d="M8 82H93M40 56L47 62M47 52L54 59M54 50L60 57"/>`,
- boot:`<path d="M32 18H60L62 66Q76 70 88 78Q95 83 93 92V96Q93 100 88 100H26Q22 100 22 96Z"/><path class="ln" d="M22 90H93M32 30H60M32 42H60M32 54H61"/>`,
- tote:`<path d="M24 46H76L80 112H20Z"/><path class="ln" d="M36 46Q36 18 50 18Q64 18 64 46" fill="none"/>`,
- scarf:`<path d="M36 12H64L68 46H61V106H47V46H32Z"/><path class="ln" d="M49 106V114M54 106V114M59 106V114"/>`,
- cap:`<path d="M16 76Q14 34 50 32Q86 34 84 76L98 82Q76 90 48 86 30 84 16 78Z"/><path class="ln" d="M50 32V84"/>`
-};
 /* Photos can be plain URLs (older products) or {u, c}: c = colour hex the photo belongs to (empty = all colours). */
 function pphotos(p){ return (p.photos||[]).map(x=>typeof x==='string'?{u:x,c:null}:x).filter(x=>x&&x.u); }
 /* Photos linked to one colour. If the colour has none, fall back to the untagged ones, then to all photos. */
@@ -493,9 +477,8 @@ function gallery(p, hex){
 function art(p, hex){
   const cp=colorPhotos(p, hex||p.colors[0]);
   if(cp.length) return `<img src="${cp[0].u}" alt="" loading="lazy">`;
-  const c = hex || p.colors[0];
-  return `<svg viewBox="0 0 100 125" xmlns="http://www.w3.org/2000/svg"><g fill="${c}" stroke="rgba(24,24,24,.35)" stroke-width="1" stroke-linejoin="round">${SHAPES[p.art]}</g>
-  <style>.ln{fill:none;stroke:rgba(24,24,24,.35);stroke-width:1;stroke-linecap:round}</style></svg>`;
+  /* no product photo yet: show the category cover photo (covers/<category>-sq.jpg); if that file does not exist, a plain APEX tile */
+  return `<img src="covers/${encodeURIComponent(p.cat)}-sq.jpg" alt="" loading="lazy" onerror="this.parentNode.classList.add('noimg');this.remove()">`;
 }
 
 /* ---------- State ---------- */
@@ -591,9 +574,9 @@ function ticker(){
 }
 function ctiles(){
   if(S.cat!=='all') return '';
-  const cs=SECS?SECS.cats:['tshirts','hoodies','shorts','tracksuits','accessories'];
-  return `<div class="ctiles">${cs.map(c=>{const L=P.filter(p=>p.cat===c); if(!L.length) return ''; const f=L[0];
-    return `<button class="ctile" data-a="cat" data-v="${c}"><span class="ct-art">${art(f)}</span><span class="cn">${sname(c)}</span><span class="cc">${L.length} ${t('items')}</span></button>`;}).join('')}</div>`;
+  const cs=(SECS?SECS.cats:['tshirts','hoodies','shorts','tracksuits','accessories','shoes']).filter(c=>P.some(p=>p.cat===c)), n=cs.length;
+  return `<div class="ctiles">${cs.map((c,i)=>{const k=P.filter(p=>p.cat===c).length, wide=i===0||(i===n-1&&i%2===1);
+    return `<button class="ctile${wide?' wide':''}" data-a="cat" data-v="${c}"><img class="ct-img" src="covers/${encodeURIComponent(c)}.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="cn">${sname(c)}</span><span class="cc">${k} ${t('items')}</span></button>`;}).join('')}</div>`;
 }
 function home(){
   const bn=CFG.banner&&CFG.banner[S.lang]?`<div class="banner">${CFG.banner[S.lang]}</div>`:'';
@@ -601,7 +584,7 @@ function home(){
     <button class="pill" data-a="shop">${t('shopNow')}</button><button class="pill ghost" data-a="store">${t('ourStore')}</button></section>
     ${ticker()}${ctiles()}
     ${rails()}${recent()}
-    <div class="chips" id="shop">${['all',...(SECS?SECS.cats:['tshirts','hoodies','shorts','tracksuits','accessories'])].map(c=>`<button class="chip ${S.cat===c?'on':''}" data-a="cat" data-v="${c}">${c==='all'?t('all'):sname(c)}</button>`).join('')}</div>
+    <div class="chips" id="shop">${['all',...(SECS?SECS.cats:['tshirts','hoodies','shorts','tracksuits','accessories','shoes'])].map(c=>`<button class="chip ${S.cat===c?'on':''}" data-a="cat" data-v="${c}">${c==='all'?t('all'):sname(c)}</button>`).join('')}</div>
     ${S.cat!=='all'?`<div class="chips" style="padding-top:2px">${['all',...[...new Set(P.filter(p=>p.cat===S.cat).map(subOf))].filter(Boolean).sort((a,b)=>SECS?SECS.subs.indexOf(a)-SECS.subs.indexOf(b):0)].map(c=>`<button class="chip ${S.sub===c?'on':''}" data-a="sub" data-v="${c}">${c==='all'?t('all'):sname(c)}</button>`).join('')}</div>`:''}
     <div class="tools"><input class="inp" id="f-q" placeholder="${t('search')}" value="${S.q.replace(/"/g,'&quot;')}"><select class="inp" id="f-sort">${[['def','sortDef'],['low','sortLow'],['high','sortHigh']].map(([k,l])=>`<option value="${k}" ${S.sort===k?'selected':''}>${t(l)}</option>`).join('')}</select></div>
     <div class="grid" id="grid">${gridHtml()}</div>

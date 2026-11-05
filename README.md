@@ -8,6 +8,8 @@ Men's sportswear shop that runs inside Telegram, with delivery orders, a live ad
 - `lib/`         shared code; `lib/catalog.js` = server price list
 - `config.js`    brand name, phone, address, hours, map point, delivery fees
 - `supabase.sql` the whole database in ONE file
+- `supabase-shoes.sql` adds the Shoes category to an existing database
+- `covers/`      category cover photos
 - `.env.example` every environment variable you need
 - `DEPLOY.md`    step-by-step deploy guide (start here)
 - `avatar.png`   bot profile picture, `logo.png` logo

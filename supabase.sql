@@ -101,7 +101,7 @@ end $$;
 -- 6) Public bucket for product photos (uploaded from the admin panel) ------------------
 insert into storage.buckets (id, name, public) values ('products', 'products', true) on conflict (id) do nothing;
 
--- 7) Starting data: colours, categories, 13 demo products -------------------------------
+-- 7) Starting data: colours, categories, 16 demo products -------------------------------
 insert into shop_colors (hex, name, pos) values
   ('#FFFFFF', 'Oq', 1),
   ('#111111', 'Qora', 2),
@@ -121,12 +121,13 @@ insert into shop_sections (key, kind, uz, ru, pos) values
   ('shorts', 'cat', 'Shortilar', 'Шорты', 3),
   ('tracksuits', 'cat', 'Sport kostyumlari', 'Спортивные костюмы', 4),
   ('accessories', 'cat', 'Aksessuarlar', 'Аксессуары', 5),
-  ('training', 'sub', 'Mashg‘ulot', 'Тренировка', 6),
-  ('running', 'sub', 'Yugurish', 'Бег', 7),
-  ('lifestyle', 'sub', 'Kundalik', 'Повседневное', 8),
-  ('bags', 'sub', 'Sumkalar', 'Сумки', 9),
-  ('caps', 'sub', 'Kepkalar', 'Кепки', 10),
-  ('bottles', 'sub', 'Butilkalar', 'Бутылки', 11)
+  ('shoes', 'cat', 'Oyoq kiyim', 'Обувь', 6),
+  ('training', 'sub', 'Mashg‘ulot', 'Тренировка', 7),
+  ('running', 'sub', 'Yugurish', 'Бег', 8),
+  ('lifestyle', 'sub', 'Kundalik', 'Повседневное', 9),
+  ('bags', 'sub', 'Sumkalar', 'Сумки', 10),
+  ('caps', 'sub', 'Kepkalar', 'Кепки', 11),
+  ('bottles', 'sub', 'Butilkalar', 'Бутылки', 12)
 on conflict (key) do nothing;
 
 insert into shop_products (id,cat,sub,art,mat,price,sale,stock,active,sizes,colors,name,is_new) values
@@ -142,5 +143,8 @@ insert into shop_products (id,cat,sub,art,mat,price,sale,stock,active,sizes,colo
 (10,'tracksuits','lifestyle','tracksuit','polyester',649000,0,null,true,'["S","M","L","XL","XXL"]','["#6B7280","#111111","#2F6FED"]','{"uz":"Apex Core sport kostyumi","ru":"Спортивный костюм Apex Core"}',false),
 (11,'accessories','bags','duffel','polyester',299000,0,null,true,null,'["#111111","#FF5B1F"]','{"uz":"Apex sport sumkasi","ru":"Спортивная сумка Apex"}',false),
 (12,'accessories','caps','cap','polyester',99000,0,null,true,null,'["#111111","#FFFFFF","#FF5B1F"]','{"uz":"Apex Run kepka","ru":"Кепка Apex Run"}',false),
-(13,'accessories','bottles','bottle','synthetic',89000,0,null,true,null,'["#111111","#FF5B1F"]','{"uz":"Apex shaker butilka","ru":"Шейкер Apex"}',false)
+(13,'accessories','bottles','bottle','synthetic',89000,0,null,true,null,'["#111111","#FF5B1F"]','{"uz":"Apex shaker butilka","ru":"Шейкер Apex"}',false),
+(14,'shoes','running','sneaker','mesh',649000,0,null,true,'["39","40","41","42","43","44","45","46"]','["#111111","#FFFFFF","#FF5B1F"]','{"uz":"Apex Runner krossovka","ru":"Кроссовки Apex Runner"}',true),
+(15,'shoes','training','sneaker','synthetic',589000,0,null,true,'["39","40","41","42","43","44","45","46"]','["#111111","#6B7280"]','{"uz":"Peak Trainer krossovka","ru":"Кроссовки Peak Trainer"}',false),
+(16,'shoes','lifestyle','boot','leather',729000,0,null,true,'["39","40","41","42","43","44","45","46"]','["#3F5B3A","#111111"]','{"uz":"Summit trail botinka","ru":"Трекинговые ботинки Summit"}',false)
 on conflict (id) do nothing;

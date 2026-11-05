@@ -14,7 +14,7 @@ Do the parts in order. Replace `apex-sport` with your own names where you chose 
 ## 2. Supabase (database)
 
 1. supabase.com -> **New project** -> name `apex-sport`, set a database password, pick the closest region -> Create.
-2. When ready: **SQL Editor -> New query**, open `supabase.sql`, copy ALL of it, paste, click **Run**. It says "Success". This creates every table, the stock functions, the photo storage bucket and 13 demo products. (Safe to run twice.)
+2. When ready: **SQL Editor -> New query**, open `supabase.sql`, copy ALL of it, paste, click **Run**. It says "Success". This creates every table, the stock functions, the photo storage bucket and 16 demo products. (Safe to run twice.)
 3. **Project Settings -> API** (or API Keys). Copy:
    - **Project URL** -> this is `SUPABASE_URL`
    - the **secret key** (`service_role` on the Legacy tab, or `sb_secret_...`) -> this is `SUPABASE_SERVICE_KEY`
@@ -91,6 +91,19 @@ You must see `"ok":true`. Then open the bot in BotFather: `/newapp` (or **Bot Se
 - **Products**: add, edit, price, discount %, stock (also per size), colours, visibility, up to 3 photos per product (**+ Photo**, or **+ Link** from Unsplash/Pexels), "New" flag.
 - **Colours / Sections**: edit the colour list and the shop categories (T-shirts, Hoodies, Shorts, Tracksuits, Accessories).
 - **Promo codes**, **Broadcast** (message all verified customers).
+
+## Updating an existing install (shoes + covers)
+
+1. Supabase -> SQL Editor -> New query -> paste `supabase-shoes.sql` -> Run. It adds the **Shoes (Oyoq kiyim)** category and 3 demo shoe products. (New installs already have this inside `supabase.sql`.)
+2. Push the new code: `git add . && git commit -m "Shoes and covers" && git push`. Vercel redeploys by itself.
+3. Admin panel -> Products -> **+ Add product**: choose Category **Shoes** and the sizes switch to **Shoes 39-46** automatically. Tick **Stock for each size** to set pieces per size.
+
+## Pictures
+
+- No drawings are used. A product without its own photo shows its **category cover** from the `covers/` folder.
+- Cover files: `covers/<category>.jpg` (tile on the home page) and `covers/<category>-sq.jpg` (square, used for products). Categories: `tshirts`, `hoodies`, `shorts`, `tracksuits`, `accessories`, `shoes`.
+- **Shoes has no cover yet.** Add `covers/shoes.jpg` and `covers/shoes-sq.jpg` (same style as the others) and push. Until then it shows a plain APEX tile.
+- Real product photos: Admin -> Products -> open a product -> **+ Photo**. A product photo always replaces the cover.
 
 ## Make it yours
 
