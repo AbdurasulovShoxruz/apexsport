@@ -394,9 +394,9 @@ Object.assign(I.uz,{vPhoneNote:'Telegramdagi tasdiqlangan raqamingiz. Xohlasangi
 Object.assign(I.ru,{vPhoneNote:'Ваш подтверждённый номер в Telegram. Можно изменить.',viloyat:'В регионы',viloyatSub:'BTS Express',vilPrepaid:'100% предоплата',vilBts:'Доставка в регионы осуществляется только службой BTS Express. Сначала оплата, затем заказ принимается.',payNow:'Оплатить',payTitle:'Онлайн-оплата',payWith:'Способ оплаты',payDemo:'Демо: в реальном проекте откроется страница оплаты Click / Payme.',payBtn:'Оплатить',vTitle:'Данные для доставки',vPaid:'Оплата получена',region:'Область',pickRegion:'Выберите область',vAddress:'Адрес или филиал BTS',vSubmit:'Подтвердить заказ',btsDone:'Отправим через BTS Express. Номер отслеживания пришлём сюда.',vFill:'Заполнить данные',vExpired:'Время оплаты истекло, заказ отменён',payOff:'Онлайн-оплата не подключена',st_paid:'Оплачен',st_awaiting_payment:'Ожидает оплаты'});
 Object.assign(I.uz,{qolmadi:'Qolmadi',notPaidYet:'To\u2018lov hali tasdiqlanmadi',checkPay:'To\u2018lovni tekshirish',cancelOrder:'Buyurtmani bekor qilish',cancelled:'Buyurtma bekor qilindi',share:'Do\u2018stga yuborish',recent:'Yaqinda ko\u2018rilgan',tooMany:'Juda ko\u2018p urinish, birozdan keyin qayta urining'});
 Object.assign(I.ru,{qolmadi:'Больше нет в наличии',notPaidYet:'Оплата ещё не подтверждена',checkPay:'Проверить оплату',cancelOrder:'Отменить заказ',cancelled:'Заказ отменён',share:'Отправить другу',recent:'Недавно просмотренные',tooMany:'Слишком много попыток, повторите позже'});
-Object.assign(I.en,{tick:'Reach for the summit|Free delivery over {n}|Delivery across Tashkent|New collection Autumn / Winter 2026',tshirts:'T-shirts',hoodies:'Hoodies',shorts:'Shorts',tracksuits:'Tracksuits',training:'Training',running:'Running',lifestyle:'Everyday',bags:'Bags',caps:'Caps',bottles:'Bottles'});
-Object.assign(I.ru,{tick:'Стремись к вершине|Бесплатная доставка от {n}|Доставка по Ташкенту|Новая коллекция Осень / Зима 2026',tshirts:'Футболки',hoodies:'Худи',shorts:'Шорты',tracksuits:'Спортивные костюмы',training:'Тренировка',running:'Бег',lifestyle:'Повседневное',bags:'Сумки',caps:'Кепки',bottles:'Бутылки'});
-Object.assign(I.uz,{tick:'Cho\u2018qqiga intil|{n} dan bepul yetkazish|Toshkent bo\u2018ylab yetkazib berish|Yangi kolleksiya Kuz / Qish 2026',tshirts:'Futbolkalar',hoodies:'Hudilar',shorts:'Shortilar',tracksuits:'Sport kostyumlari',training:'Mashg\u2018ulot',running:'Yugurish',lifestyle:'Kundalik',bags:'Sumkalar',caps:'Kepkalar',bottles:'Butilkalar'});
+Object.assign(I.en,{jackets:'Jackets',tick:'Reach for the summit|Free delivery over {n}|Delivery across Tashkent|New collection Autumn / Winter 2026',tshirts:'T-shirts',hoodies:'Hoodies',shorts:'Shorts',tracksuits:'Tracksuits',training:'Training',running:'Running',lifestyle:'Everyday',bags:'Bags',caps:'Caps',bottles:'Bottles'});
+Object.assign(I.ru,{jackets:'Куртки',tick:'Стремись к вершине|Бесплатная доставка от {n}|Доставка по Ташкенту|Новая коллекция Осень / Зима 2026',tshirts:'Футболки',hoodies:'Худи',shorts:'Шорты',tracksuits:'Спортивные костюмы',training:'Тренировка',running:'Бег',lifestyle:'Повседневное',bags:'Сумки',caps:'Кепки',bottles:'Бутылки'});
+Object.assign(I.uz,{jackets:'Kurtkalar',tick:'Cho\u2018qqiga intil|{n} dan bepul yetkazish|Toshkent bo\u2018ylab yetkazib berish|Yangi kolleksiya Kuz / Qish 2026',tshirts:'Futbolkalar',hoodies:'Hudilar',shorts:'Shortilar',tracksuits:'Sport kostyumlari',training:'Mashg\u2018ulot',running:'Yugurish',lifestyle:'Kundalik',bags:'Sumkalar',caps:'Kepkalar',bottles:'Butilkalar'});
 const SUBOF={tee:'training',shirt:'lifestyle',hoodie:'lifestyle',knit:'lifestyle',trousers:'lifestyle',shorts:'running',tracksuit:'training',duffel:'bags',tote:'bags',cap:'caps',bottle:'bottles',sneaker:'running',boot:'lifestyle'};
 /* Categories and sections set in the admin panel (null = built-in lists) */
 let SECS=null;
@@ -459,12 +459,16 @@ const P = [
   name:{en:'Apex Run Cap',ru:'Кепка Apex Run',uz:'Apex Run kepka'}},
  {id:13,cat:'accessories',sub:'bottles',art:'bottle',price:89000,mat:'synthetic',sizes:null,colors:['#111111','#FF5B1F'],
   name:{en:'Apex Shaker Bottle',ru:'Шейкер Apex',uz:'Apex shaker butilka'}},
- {id:14,cat:'shoes',sub:'running',art:'sneaker',price:649000,mat:'mesh',sizes:SH,colors:['#111111','#FFFFFF','#FF5B1F'],isNew:true,
-  name:{en:'Apex Runner Sneakers',ru:'Кроссовки Apex Runner',uz:'Apex Runner krossovka'}},
- {id:15,cat:'shoes',sub:'training',art:'sneaker',price:589000,mat:'synthetic',sizes:SH,colors:['#111111','#6B7280'],
-  name:{en:'Peak Trainer Shoes',ru:'Кроссовки Peak Trainer',uz:'Peak Trainer krossovka'}},
- {id:16,cat:'shoes',sub:'lifestyle',art:'boot',price:729000,mat:'leather',sizes:SH,colors:['#3F5B3A','#111111'],
-  name:{en:'Summit Trail Boots',ru:'Трекинговые ботинки Summit',uz:'Summit trail botinka'}}
+ {id:14,cat:'shoes',sub:'running',art:'sneaker',price:799000,mat:'mesh',sizes:SH,colors:['#4A2F2B','#111111','#A7685C'],isNew:true,photos:[{u:'/photos/cloud-brown-1.jpg',c:'#4A2F2B'},{u:'/photos/cloud-brown-2.jpg',c:'#4A2F2B'},{u:'/photos/cloud-brown-3.jpg',c:'#4A2F2B'},{u:'/photos/cloud-black-1.jpg',c:'#111111'},{u:'/photos/cloud-black-2.jpg',c:'#111111'},{u:'/photos/cloud-black-3.jpg',c:'#111111'},{u:'/photos/cloud-rose-1.jpg',c:'#A7685C'},{u:'/photos/cloud-rose-2.jpg',c:'#A7685C'},{u:'/photos/cloud-rose-3.jpg',c:'#A7685C'}],
+  name:{en:'Apex Cloud Waterproof Sneakers',ru:'Водонепроницаемые кроссовки Apex Cloud',uz:'Apex Cloud suv o\u2018tkazmas krossovka'}},
+ {id:15,cat:'shoes',sub:'lifestyle',art:'sneaker',price:849000,mat:'synthetic',sizes:SH,colors:['#2B2845'],isNew:true,photos:[{u:'/photos/hiker-1.jpg',c:'#2B2845'},{u:'/photos/hiker-2.jpg',c:'#2B2845'},{u:'/photos/hiker-3.jpg',c:'#2B2845'}],
+  name:{en:'Peak Trail Hiker',ru:'Трекинговые кроссовки Peak Hiker',uz:'Peak Hiker trekking krossovka'}},
+ {id:16,cat:'shoes',sub:'running',art:'sneaker',price:729000,mat:'mesh',sizes:SH,colors:['#8B6B82'],photos:[{u:'/photos/trail-1.jpg',c:'#8B6B82'},{u:'/photos/trail-2.jpg',c:'#8B6B82'},{u:'/photos/trail-3.jpg',c:'#8B6B82'}],
+  name:{en:'Pace Trail Runner',ru:'Трейловые кроссовки Pace',uz:'Pace trail yugurish krossovka'}},
+ {id:17,cat:'jackets',sub:'training',art:'hoodie',price:1290000,mat:'polyester',sizes:CL,colors:['#8E2DC6'],isNew:true,photos:[{u:'/photos/shell-1.jpg',c:'#8E2DC6'},{u:'/photos/shell-2.jpg',c:'#8E2DC6'},{u:'/photos/shell-3.jpg',c:'#8E2DC6'}],
+  name:{en:'Apex Summit Shell Jacket',ru:'Куртка-ветровка Apex Summit',uz:'Apex Summit yengil kurtka'}},
+ {id:18,cat:'jackets',sub:'running',art:'hoodie',price:689000,mat:'fleece',sizes:CL,colors:['#111111'],isNew:true,photos:[{u:'/photos/zip-1.jpg',c:'#111111'},{u:'/photos/zip-2.jpg',c:'#111111'},{u:'/photos/zip-3.jpg',c:'#111111'}],
+  name:{en:'Apex Thermal Zip Jacket',ru:'Термокуртка на молнии Apex',uz:'Apex Thermal zip kurtka'}}
 ];
 const DELIVERY_FEE = CFG.fees.delivery, FREE_OVER = CFG.fees.freeOver, VILOYAT_FEE = CFG.fees.viloyat;
 const REGIONS = ["Qoraqalpog‘iston Respublikasi", "Andijon viloyati", "Buxoro viloyati", "Farg‘ona viloyati", "Jizzax viloyati", "Xorazm viloyati", "Namangan viloyati", "Navoiy viloyati", "Qashqadaryo viloyati", "Samarqand viloyati", "Sirdaryo viloyati", "Surxondaryo viloyati", "Toshkent viloyati"];
@@ -584,7 +588,7 @@ function ticker(){
 }
 function ctiles(){
   if(S.cat!=='all') return '';
-  const cs=(SECS?SECS.cats:['tshirts','hoodies','shorts','tracksuits','accessories','shoes']).filter(c=>P.some(p=>p.cat===c)), n=cs.length;
+  const cs=(SECS?SECS.cats:['tshirts','hoodies','jackets','shorts','tracksuits','accessories','shoes']).filter(c=>P.some(p=>p.cat===c)), n=cs.length;
   return `<div class="ctiles">${cs.map((c,i)=>{const k=P.filter(p=>p.cat===c).length, wide=i===0||(i===n-1&&i%2===1);
     return `<button class="ctile${wide?' wide':''}" data-a="cat" data-v="${c}"><img class="ct-img" src="covers/${encodeURIComponent(c)}.jpg" alt="" loading="lazy" onerror="this.remove()"><span class="cn">${sname(c)}</span><span class="cc">${k} ${t('items')}</span></button>`;}).join('')}</div>`;
 }

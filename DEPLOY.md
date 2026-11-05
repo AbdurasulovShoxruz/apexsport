@@ -92,18 +92,18 @@ You must see `"ok":true`. Then open the bot in BotFather: `/newapp` (or **Bot Se
 - **Colours / Sections**: edit the colour list and the shop categories (T-shirts, Hoodies, Shorts, Tracksuits, Accessories).
 - **Promo codes**, **Broadcast** (message all verified customers).
 
-## Updating an existing install (shoes + covers)
+## Updating an existing install (photos, Shoes, Jackets)
 
-1. Supabase -> SQL Editor -> New query -> paste `supabase-shoes.sql` -> Run. It adds the **Shoes (Oyoq kiyim)** category and 3 demo shoe products. (New installs already have this inside `supabase.sql`.)
-2. Push the new code: `git add . && git commit -m "Shoes and covers" && git push`. Vercel redeploys by itself.
-3. Admin panel -> Products -> **+ Add product**: choose Category **Shoes** and the sizes switch to **Shoes 39-46** automatically. Tick **Stock for each size** to set pieces per size.
+1. Supabase -> SQL Editor -> New query -> paste everything from `supabase-update-photos.sql` -> Run. It adds the Jackets category, the Shoes category, new colours and products 14-18 with their photos. (New installs already have all of this inside `supabase.sql`.)
+2. Push the new code: `git add . && git commit -m "Photos" && git push`. Vercel redeploys by itself.
+3. Close and reopen the shop in Telegram.
 
 ## Pictures
 
-- No drawings are used. A product without its own photo shows its **category cover** from the `covers/` folder.
-- Cover files: `covers/<category>.jpg` (tile on the home page) and `covers/<category>-sq.jpg` (square, used for products). Categories: `tshirts`, `hoodies`, `shorts`, `tracksuits`, `accessories`, `shoes`.
-- **Shoes has no cover yet.** Add `covers/shoes.jpg` and `covers/shoes-sq.jpg` (same style as the others) and push. Until then it shows a plain APEX tile.
-- Real product photos: Admin -> Products -> open a product -> **+ Photo**. A product photo always replaces the cover.
+- Product photos live in the `photos/` folder and are linked to products in the database. Each photo can be tied to a colour: tapping a colour in the shop shows that colour's photos.
+- Add or change photos in the admin: Products -> open a product -> **+ Photo** (uploads to Supabase) or **+ Link**. Photos already in the product stay.
+- A product with no photo shows its **category cover** from `covers/<category>.jpg` and `covers/<category>-sq.jpg`. No drawings are used anywhere.
+- To add a photo file by hand, put it in `photos/`, push, and add it in the admin or with SQL as `/photos/yourfile.jpg`.
 
 ## Make it yours
 

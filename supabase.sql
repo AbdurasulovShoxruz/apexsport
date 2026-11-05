@@ -101,7 +101,7 @@ end $$;
 -- 6) Public bucket for product photos (uploaded from the admin panel) ------------------
 insert into storage.buckets (id, name, public) values ('products', 'products', true) on conflict (id) do nothing;
 
--- 7) Starting data: colours, categories, 16 demo products -------------------------------
+-- 7) Starting data: colours, categories, 18 demo products -------------------------------
 insert into shop_colors (hex, name, pos) values
   ('#FFFFFF', 'Oq', 1),
   ('#111111', 'Qora', 2),
@@ -112,39 +112,47 @@ insert into shop_colors (hex, name, pos) values
   ('#3F5B3A', 'Zaytun', 7),
   ('#C8F03B', 'Laym', 8),
   ('#B3261E', 'Qizil', 9),
-  ('#9AA5B1', 'Och kulrang', 10)
+  ('#9AA5B1', 'Och kulrang', 10),
+  ('#4A2F2B', 'Jigarrang', 11),
+  ('#A7685C', 'Terrakota', 12),
+  ('#2B2845', 'To‘q binafsha', 13),
+  ('#8B6B82', 'Mov', 14),
+  ('#8E2DC6', 'Binafsha', 15)
 on conflict (hex) do nothing;
 
 insert into shop_sections (key, kind, uz, ru, pos) values
   ('tshirts', 'cat', 'Futbolkalar', 'Футболки', 1),
   ('hoodies', 'cat', 'Hudilar', 'Худи', 2),
-  ('shorts', 'cat', 'Shortilar', 'Шорты', 3),
-  ('tracksuits', 'cat', 'Sport kostyumlari', 'Спортивные костюмы', 4),
-  ('accessories', 'cat', 'Aksessuarlar', 'Аксессуары', 5),
-  ('shoes', 'cat', 'Oyoq kiyim', 'Обувь', 6),
-  ('training', 'sub', 'Mashg‘ulot', 'Тренировка', 7),
-  ('running', 'sub', 'Yugurish', 'Бег', 8),
-  ('lifestyle', 'sub', 'Kundalik', 'Повседневное', 9),
-  ('bags', 'sub', 'Sumkalar', 'Сумки', 10),
-  ('caps', 'sub', 'Kepkalar', 'Кепки', 11),
-  ('bottles', 'sub', 'Butilkalar', 'Бутылки', 12)
+  ('jackets', 'cat', 'Kurtkalar', 'Куртки', 3),
+  ('shorts', 'cat', 'Shortilar', 'Шорты', 4),
+  ('tracksuits', 'cat', 'Sport kostyumlari', 'Спортивные костюмы', 5),
+  ('accessories', 'cat', 'Aksessuarlar', 'Аксессуары', 6),
+  ('shoes', 'cat', 'Oyoq kiyim', 'Обувь', 7),
+  ('training', 'sub', 'Mashg‘ulot', 'Тренировка', 8),
+  ('running', 'sub', 'Yugurish', 'Бег', 9),
+  ('lifestyle', 'sub', 'Kundalik', 'Повседневное', 10),
+  ('bags', 'sub', 'Sumkalar', 'Сумки', 11),
+  ('caps', 'sub', 'Kepkalar', 'Кепки', 12),
+  ('bottles', 'sub', 'Butilkalar', 'Бутылки', 13)
 on conflict (key) do nothing;
 
-insert into shop_products (id,cat,sub,art,mat,price,sale,stock,active,sizes,colors,name,is_new) values
-(1,'tshirts','training','tee','dryfit',189000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#FFFFFF","#FF5B1F"]','{"uz":"Summit Dry-Fit futbolka","ru":"Футболка Summit Dry-Fit"}',true),
-(2,'hoodies','lifestyle','hoodie','fleece',449000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#6B7280","#1F3A5F"]','{"uz":"Peak Fleece hudi","ru":"Худи Peak Fleece"}',true),
-(3,'shorts','running','shorts','polyester',219000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#1F3A5F","#FF5B1F"]','{"uz":"Sprint 5\" shorti","ru":"Шорты Sprint 5\""}',true),
-(4,'tracksuits','training','tracksuit','fleece',899000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#1F3A5F"]','{"uz":"Apex Pro sport kostyumi","ru":"Спортивный костюм Apex Pro"}',true),
-(5,'tshirts','lifestyle','tee','cotton',159000,0,null,true,'["S","M","L","XL","XXL"]','["#FFFFFF","#111111","#6B7280"]','{"uz":"Core paxta futbolka","ru":"Хлопковая футболка Core"}',false),
-(6,'tshirts','running','tee','dryfit',179000,15,null,true,'["S","M","L","XL","XXL"]','["#C8F03B","#111111","#2F6FED"]','{"uz":"Pace yugurish futbolkasi","ru":"Беговая футболка Pace"}',false),
-(7,'hoodies','training','hoodie','fleece',479000,10,null,true,'["S","M","L","XL","XXL"]','["#3F5B3A","#111111","#9AA5B1"]','{"uz":"Trail zip hudi","ru":"Худи на молнии Trail"}',false),
-(8,'shorts','training','shorts','polyester',239000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#6B7280","#B3261E"]','{"uz":"Tempo mashg‘ulot shortisi","ru":"Тренировочные шорты Tempo"}',false),
-(9,'tracksuits','lifestyle','trousers','fleece',329000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#6B7280","#1F3A5F"]','{"uz":"Summit jogger shim","ru":"Джоггеры Summit"}',false),
-(10,'tracksuits','lifestyle','tracksuit','polyester',649000,0,null,true,'["S","M","L","XL","XXL"]','["#6B7280","#111111","#2F6FED"]','{"uz":"Apex Core sport kostyumi","ru":"Спортивный костюм Apex Core"}',false),
-(11,'accessories','bags','duffel','polyester',299000,0,null,true,null,'["#111111","#FF5B1F"]','{"uz":"Apex sport sumkasi","ru":"Спортивная сумка Apex"}',false),
-(12,'accessories','caps','cap','polyester',99000,0,null,true,null,'["#111111","#FFFFFF","#FF5B1F"]','{"uz":"Apex Run kepka","ru":"Кепка Apex Run"}',false),
-(13,'accessories','bottles','bottle','synthetic',89000,0,null,true,null,'["#111111","#FF5B1F"]','{"uz":"Apex shaker butilka","ru":"Шейкер Apex"}',false),
-(14,'shoes','running','sneaker','mesh',649000,0,null,true,'["39","40","41","42","43","44","45","46"]','["#111111","#FFFFFF","#FF5B1F"]','{"uz":"Apex Runner krossovka","ru":"Кроссовки Apex Runner"}',true),
-(15,'shoes','training','sneaker','synthetic',589000,0,null,true,'["39","40","41","42","43","44","45","46"]','["#111111","#6B7280"]','{"uz":"Peak Trainer krossovka","ru":"Кроссовки Peak Trainer"}',false),
-(16,'shoes','lifestyle','boot','leather',729000,0,null,true,'["39","40","41","42","43","44","45","46"]','["#3F5B3A","#111111"]','{"uz":"Summit trail botinka","ru":"Трекинговые ботинки Summit"}',false)
+insert into shop_products (id,cat,sub,art,mat,price,sale,stock,active,sizes,colors,name,is_new,photos) values
+(1,'tshirts','training','tee','dryfit',189000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#FFFFFF","#FF5B1F"]','{"uz":"Summit Dry-Fit futbolka","ru":"Футболка Summit Dry-Fit"}',true,null),
+(2,'hoodies','lifestyle','hoodie','fleece',449000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#6B7280","#1F3A5F"]','{"uz":"Peak Fleece hudi","ru":"Худи Peak Fleece"}',true,null),
+(3,'shorts','running','shorts','polyester',219000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#1F3A5F","#FF5B1F"]','{"uz":"Sprint 5\" shorti","ru":"Шорты Sprint 5\""}',true,null),
+(4,'tracksuits','training','tracksuit','fleece',899000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#1F3A5F"]','{"uz":"Apex Pro sport kostyumi","ru":"Спортивный костюм Apex Pro"}',true,null),
+(5,'tshirts','lifestyle','tee','cotton',159000,0,null,true,'["S","M","L","XL","XXL"]','["#FFFFFF","#111111","#6B7280"]','{"uz":"Core paxta futbolka","ru":"Хлопковая футболка Core"}',false,null),
+(6,'tshirts','running','tee','dryfit',179000,15,null,true,'["S","M","L","XL","XXL"]','["#C8F03B","#111111","#2F6FED"]','{"uz":"Pace yugurish futbolkasi","ru":"Беговая футболка Pace"}',false,null),
+(7,'hoodies','training','hoodie','fleece',479000,10,null,true,'["S","M","L","XL","XXL"]','["#3F5B3A","#111111","#9AA5B1"]','{"uz":"Trail zip hudi","ru":"Худи на молнии Trail"}',false,null),
+(8,'shorts','training','shorts','polyester',239000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#6B7280","#B3261E"]','{"uz":"Tempo mashg‘ulot shortisi","ru":"Тренировочные шорты Tempo"}',false,null),
+(9,'tracksuits','lifestyle','trousers','fleece',329000,0,null,true,'["S","M","L","XL","XXL"]','["#111111","#6B7280","#1F3A5F"]','{"uz":"Summit jogger shim","ru":"Джоггеры Summit"}',false,null),
+(10,'tracksuits','lifestyle','tracksuit','polyester',649000,0,null,true,'["S","M","L","XL","XXL"]','["#6B7280","#111111","#2F6FED"]','{"uz":"Apex Core sport kostyumi","ru":"Спортивный костюм Apex Core"}',false,null),
+(11,'accessories','bags','duffel','polyester',299000,0,null,true,null,'["#111111","#FF5B1F"]','{"uz":"Apex sport sumkasi","ru":"Спортивная сумка Apex"}',false,null),
+(12,'accessories','caps','cap','polyester',99000,0,null,true,null,'["#111111","#FFFFFF","#FF5B1F"]','{"uz":"Apex Run kepka","ru":"Кепка Apex Run"}',false,null),
+(13,'accessories','bottles','bottle','synthetic',89000,0,null,true,null,'["#111111","#FF5B1F"]','{"uz":"Apex shaker butilka","ru":"Шейкер Apex"}',false,null),
+(14,'shoes','running','sneaker','mesh',799000,0,null,true,'["39","40","41","42","43","44","45","46"]','["#4A2F2B","#111111","#A7685C"]','{"uz":"Apex Cloud suv o‘tkazmas krossovka","ru":"Водонепроницаемые кроссовки Apex Cloud"}',true,'[{"u":"/photos/cloud-brown-1.jpg","c":"#4A2F2B"},{"u":"/photos/cloud-brown-2.jpg","c":"#4A2F2B"},{"u":"/photos/cloud-brown-3.jpg","c":"#4A2F2B"},{"u":"/photos/cloud-black-1.jpg","c":"#111111"},{"u":"/photos/cloud-black-2.jpg","c":"#111111"},{"u":"/photos/cloud-black-3.jpg","c":"#111111"},{"u":"/photos/cloud-rose-1.jpg","c":"#A7685C"},{"u":"/photos/cloud-rose-2.jpg","c":"#A7685C"},{"u":"/photos/cloud-rose-3.jpg","c":"#A7685C"}]'),
+(15,'shoes','lifestyle','sneaker','synthetic',849000,0,null,true,'["39","40","41","42","43","44","45","46"]','["#2B2845"]','{"uz":"Peak Hiker trekking krossovka","ru":"Трекинговые кроссовки Peak Hiker"}',true,'[{"u":"/photos/hiker-1.jpg","c":"#2B2845"},{"u":"/photos/hiker-2.jpg","c":"#2B2845"},{"u":"/photos/hiker-3.jpg","c":"#2B2845"}]'),
+(16,'shoes','running','sneaker','mesh',729000,0,null,true,'["39","40","41","42","43","44","45","46"]','["#8B6B82"]','{"uz":"Pace trail yugurish krossovka","ru":"Трейловые кроссовки Pace"}',false,'[{"u":"/photos/trail-1.jpg","c":"#8B6B82"},{"u":"/photos/trail-2.jpg","c":"#8B6B82"},{"u":"/photos/trail-3.jpg","c":"#8B6B82"}]'),
+(17,'jackets','training','hoodie','polyester',1290000,0,null,true,'["S","M","L","XL","XXL"]','["#8E2DC6"]','{"uz":"Apex Summit yengil kurtka","ru":"Куртка-ветровка Apex Summit"}',true,'[{"u":"/photos/shell-1.jpg","c":"#8E2DC6"},{"u":"/photos/shell-2.jpg","c":"#8E2DC6"},{"u":"/photos/shell-3.jpg","c":"#8E2DC6"}]'),
+(18,'jackets','running','hoodie','fleece',689000,0,null,true,'["S","M","L","XL","XXL"]','["#111111"]','{"uz":"Apex Thermal zip kurtka","ru":"Термокуртка на молнии Apex"}',true,'[{"u":"/photos/zip-1.jpg","c":"#111111"},{"u":"/photos/zip-2.jpg","c":"#111111"},{"u":"/photos/zip-3.jpg","c":"#111111"}]')
 on conflict (id) do nothing;
