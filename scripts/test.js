@@ -121,19 +121,19 @@ const ok = (name) => console.log(`  ok ${++n} ${name}`);
   assert.strictEqual(r.body.error, 'bad_items'); ok('unknown size rejected');
   r = await call(order, { ...base, items: [{ id: 99, size: 'M', color: 0, qty: 1 }] });
   assert.strictEqual(r.body.error, 'bad_items'); ok('unknown product rejected');
-  r = await call(order, { ...base, lat: 40.1, lon: 64.0, items: [{ id: 4, size: 'M', color: 0, qty: 1 }] });
+  r = await call(order, { ...base, lat: 40.1, lon: 64.0, items: [{ id: 17, size: 'M', color: 0, qty: 1 }] });
   assert.strictEqual(r.body.error, 'outside_zone'); ok('location outside Tashkent rejected');
-  r = await call(order, { ...base, address: '  ', items: [{ id: 4, size: 'M', color: 0, qty: 1 }] });
+  r = await call(order, { ...base, address: '  ', items: [{ id: 17, size: 'M', color: 0, qty: 1 }] });
   assert.strictEqual(r.body.error, 'bad_address'); ok('empty address rejected');
 
   /* a real order; the browser tries to cheat with its own price/phone */
   calls.length = 0;
   r = await call(order, {
     ...base, phone: '998000000000',
-    items: [{ id: 12, size: null, color: 0, qty: 1, price: 1 }],
+    items: [{ id: 21, size: null, color: 0, qty: 1, price: 1 }],
   });
   assert.strictEqual(r.code, 200); assert.strictEqual(r.body.no, 'AX-1001');
-  assert.strictEqual(tables.orders[0].total, 124000); // 99 000 + 25 000 delivery, price from the server
+  assert.strictEqual(tables.orders[0].total, 154000); // 129 000 + 25 000 delivery, price from the server
   assert.strictEqual(tables.orders[0].phone, '998901234567'); // verified phone, not the one sent
   ok('order priced on the server, verified phone used');
   const staff = calls.find((c) => c.method === 'sendMessage' && String(c.body.chat_id) === '-100777');
@@ -143,7 +143,7 @@ const ok = (name) => console.log(`  ok ${++n} ${name}`);
   assert.deepStrictEqual([loc.body.latitude, loc.body.longitude], [41.3, 69.25]); ok('map pin sent to staff group');
   assert(calls.some((c) => c.method === 'sendMessage' && c.body.chat_id === 555)); ok('customer receives confirmation');
 
-  r = await call(order, { ...base, items: [{ id: 4, size: 'M', color: 0, qty: 1 }] });
+  r = await call(order, { ...base, items: [{ id: 17, size: 'M', color: 0, qty: 1 }] });
   assert.strictEqual(tables.orders[1].delivery_fee, 0); ok('free delivery over 500 000');
 
   /* staff buttons */
