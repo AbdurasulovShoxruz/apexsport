@@ -139,7 +139,7 @@ module.exports = async (req, res) => {
       const base = `${env('SUPABASE_URL')}/storage/v1/object/public/products/`;
       const photos = (Array.isArray(p.photos) ? p.photos : [])
         .map((x) => (typeof x === 'string' ? { u: x, c: null } : x))
-        .filter((x) => x && typeof x.u === 'string' && (x.u.startsWith(base) || /^\/photos\/[\w.-]+$/.test(x.u)))   // Supabase storage, or a file shipped in this project's /photos folder
+        .filter((x) => x && typeof x.u === 'string' && (x.u.startsWith(base) || /^https:\/\/static\.nike\.com\/a\/images\/[\w\/.-]+$/.test(x.u) || /^\/photos\/[\w.-]+$/.test(x.u)))   // Supabase storage, or a file shipped in this project's /photos folder
         .map((x) => ({ u: x.u, c: colors.includes(x.c) ? x.c : null }))   // colour tag must be one of the product's colours
         .slice(0, 12);
       const kind = p.sizes === 'shoes' ? SH : p.sizes === 'clothing' || p.sizes === true ? CL : p.sizes === 'custom' ? parseSizes(p.custom_sizes) : null;

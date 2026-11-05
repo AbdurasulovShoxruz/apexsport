@@ -50,6 +50,7 @@ alter table shop_products add column if not exists sub text;
 alter table shop_products add column if not exists photos jsonb;
 alter table shop_products add column if not exists size_stock jsonb;
 alter table shop_products add column if not exists mat_text jsonb;
+alter table shop_products add column if not exists descr jsonb;
 alter table shop_products add column if not exists is_new boolean default false;
 create table if not exists promos (code text primary key, percent int, active boolean default true, used int default 0);
 
@@ -171,3 +172,17 @@ insert into shop_products (id,cat,sub,art,mat,price,sale,stock,active,sizes,colo
 on conflict (id) do update set
   cat = excluded.cat, sub = excluded.sub, art = excluded.art, mat = excluded.mat, price = excluded.price,
   sizes = excluded.sizes, colors = excluded.colors, name = excluded.name, is_new = excluded.is_new, photos = excluded.photos;
+
+-- Descriptions and product 22
+update shop_products set descr = '{"uz":"Yomg‘ir va ko‘lmakda ham oyoqni quruq saqlaydigan suv o‘tkazmas krossovka. Yengil va yumshoq, kundalik yurish va shahar sayrlari uchun; uch xil rangda.","ru":"Водонепроницаемые кроссовки, которые держат ноги сухими в дождь и по лужам. Лёгкие и мягкие, для ежедневной носки и прогулок по городу; три цвета.","en":"Waterproof sneakers that keep your feet dry in rain and puddles. Light and soft for everyday wear and city walks, in three colours."}' where id = 14;
+update shop_products set descr = '{"uz":"Notekis yo‘llar uchun trekking krossovkasi: ishonchli ilashish va barqaror tayanch. Tog‘ yo‘llari va uzoq yurishlar uchun.","ru":"Трекинговые кроссовки для неровных троп: надёжное сцепление и устойчивость. Для горных маршрутов и долгих прогулок.","en":"Trekking sneakers for uneven trails, with dependable grip and a stable base. Made for hill paths and long walks."}' where id = 15;
+update shop_products set descr = '{"uz":"Trail yugurish uchun yumshoq amortizatsiyali krossovka. Tuproq va aralash yo‘llarda ilashishi yaxshi, mashg‘ulot kunlari uchun qulay.","ru":"Кроссовки для трейлраннинга с мягкой амортизацией. Хорошее сцепление на грунте и смешанных покрытиях, удобны для тренировок.","en":"Trail running sneakers with soft cushioning. Good grip on dirt and mixed ground, comfortable for training days."}' where id = 16;
+update shop_products set descr = '{"uz":"Shamoldan himoya qiluvchi yengil kurtka. Sumkada kam joy egallaydi, yugurish, yurish va sayohatlar uchun qulay.","ru":"Лёгкая куртка-ветровка, защищает от ветра. Занимает мало места в сумке, удобна для бега, прогулок и поездок.","en":"A lightweight shell jacket that blocks the wind. Takes little space in your bag, handy for runs, walks and trips."}' where id = 17;
+update shop_products set descr = '{"uz":"Sovuq kunlar uchun issiq zip kurtka. Yumshoq to‘qima, to‘liq zamok va erkin kesim: mashg‘ulotdan oldin va keyin kiyish uchun.","ru":"Тёплая куртка на молнии для прохладных дней. Мягкая ткань, полная молния и свободный крой: надевать до и после тренировки.","en":"A warm zip jacket for cool days. Soft fabric, full zip and a relaxed cut, easy to throw on before and after training."}' where id = 18;
+update shop_products set descr = '{"uz":"Kapyushonli yengil shamolga chidamli kurtka. Zamokli cho‘ntak va yengil mato, trail yugurish va ertalabki mashqlar uchun.","ru":"Лёгкая ветровка с капюшоном. Карман на молнии и тонкая ткань, для трейлраннинга и утренних тренировок.","en":"A light hooded windbreaker with a zip pocket and thin fabric, made for trail runs and morning workouts."}' where id = 19;
+
+-- New product 22: Apex Graphic Tee
+insert into shop_products (id,cat,sub,art,mat,price,sale,stock,active,sizes,colors,name,is_new,photos,descr) values
+(22,'tshirts','lifestyle','tee','cotton',249000,0,null,true,'["S","M","L","XL","XXL"]','["#111111"]','{"uz":"Apex Graphic futbolka","ru":"Футболка Apex Graphic"}',true,'[{"u":"https://static.nike.com/a/images/24c0ed05-6a29-46b8-b2f0-d0bf0c8ae90f/sportswear-mens-t-shirt-dWXxKP.png","c":"#111111"},{"u":"https://static.nike.com/a/images/a6355a88-166c-408e-91e5-e056b19eebac/sportswear-mens-t-shirt-dWXxKP.png","c":"#111111"},{"u":"https://static.nike.com/a/images/139dd2f3-e2d4-420d-9428-0526fb3d110c/sportswear-mens-t-shirt-dWXxKP.png","c":"#111111"},{"u":"https://static.nike.com/a/images/b04e0355-7b99-483a-a23b-f5b3074154dc/sportswear-mens-t-shirt-dWXxKP.png","c":"#111111"}]','{"uz":"Erkin kesimli paxta futbolka: yumshoq mato, ribli yoqa va old tomonda yirik bosma grafika. Kundalik kiyish uchun.","ru":"Футболка свободного кроя из мягкого хлопка: резинка на вороте и крупный принт на груди. Для повседневной носки.","en":"A relaxed-fit cotton tee with a ribbed collar and a large printed graphic on the front. Made for everyday wear."}')
+on conflict (id) do update set cat = excluded.cat, sub = excluded.sub, art = excluded.art, mat = excluded.mat, price = excluded.price,
+  sizes = excluded.sizes, colors = excluded.colors, name = excluded.name, is_new = excluded.is_new, photos = excluded.photos, descr = excluded.descr;
