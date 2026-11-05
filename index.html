@@ -435,9 +435,9 @@ const SH = ['39','40','41','42','43','44','45','46'];
 const P = [
  {id:1,cat:'tshirts',sub:'training',art:'tee',price:189000,mat:'dryfit',sizes:CL,colors:['#111111','#FFFFFF','#FF5B1F'],isNew:true,
   name:{en:'Summit Dry-Fit T-shirt',ru:'Футболка Summit Dry-Fit',uz:'Summit Dry-Fit futbolka'}},
- {id:2,cat:'hoodies',sub:'lifestyle',art:'hoodie',price:449000,mat:'fleece',sizes:CL,colors:['#111111','#6B7280','#1F3A5F'],isNew:true,
+ {id:2,cat:'hoodies',sub:'lifestyle',art:'hoodie',price:449000,mat:'fleece',sizes:CL,colors:['#111111','#6B7280','#1F3A5F','#D9D3D0'],isNew:true,photos:[{u:'/photos/hoodie-2.jpg',c:'#D9D3D0'},{u:'/photos/hoodie-3.jpg',c:'#D9D3D0'},{u:'/photos/hoodie-1.jpg',c:'#D9D3D0'}],
   name:{en:'Peak Fleece Hoodie',ru:'Худи Peak Fleece',uz:'Peak Fleece hudi'}},
- {id:3,cat:'shorts',sub:'running',art:'shorts',price:219000,mat:'polyester',sizes:CL,colors:['#111111','#1F3A5F','#FF5B1F'],isNew:true,
+ {id:3,cat:'shorts',sub:'running',art:'shorts',price:219000,mat:'polyester',sizes:CL,colors:['#111111','#1F3A5F','#FF5B1F'],isNew:true,photos:[{u:'/photos/shorts-1.jpg',c:'#111111'},{u:'/photos/shorts-2.jpg',c:'#111111'},{u:'/photos/shorts-3.jpg',c:'#111111'}],
   name:{en:'Sprint 5" Shorts',ru:'Шорты Sprint 5"',uz:'Sprint 5" shorti'}},
  {id:4,cat:'tracksuits',sub:'training',art:'tracksuit',price:899000,mat:'fleece',sizes:CL,colors:['#111111','#1F3A5F'],isNew:true,
   name:{en:'Apex Pro Tracksuit',ru:'Спортивный костюм Apex Pro',uz:'Apex Pro sport kostyumi'}},
@@ -449,7 +449,7 @@ const P = [
   name:{en:'Trail Zip Hoodie',ru:'Худи на молнии Trail',uz:'Trail zip hudi'}},
  {id:8,cat:'shorts',sub:'training',art:'shorts',price:239000,mat:'polyester',sizes:CL,colors:['#111111','#6B7280','#B3261E'],
   name:{en:'Tempo Training Shorts',ru:'Тренировочные шорты Tempo',uz:'Tempo mashg\u2018ulot shortisi'}},
- {id:9,cat:'tracksuits',sub:'lifestyle',art:'trousers',price:329000,mat:'fleece',sizes:CL,colors:['#111111','#6B7280','#1F3A5F'],
+ {id:9,cat:'tracksuits',sub:'lifestyle',art:'trousers',price:329000,mat:'fleece',sizes:CL,colors:['#111111','#6B7280','#1F3A5F'],photos:[{u:'/photos/fleece-pants-4.jpg',c:'#111111'},{u:'/photos/fleece-pants-3.jpg',c:'#111111'},{u:'/photos/fleece-pants-2.jpg',c:'#111111'},{u:'/photos/fleece-pants-1.jpg',c:'#111111'},{u:'/photos/fleece-pants-5.jpg',c:'#111111'}],
   name:{en:'Summit Jogger Pants',ru:'Джоггеры Summit',uz:'Summit jogger shim'}},
  {id:10,cat:'tracksuits',sub:'lifestyle',art:'tracksuit',price:649000,mat:'polyester',sizes:CL,colors:['#6B7280','#111111','#2F6FED'],
   name:{en:'Apex Core Tracksuit',ru:'Спортивный костюм Apex Core',uz:'Apex Core sport kostyumi'}},
@@ -468,7 +468,13 @@ const P = [
  {id:17,cat:'jackets',sub:'training',art:'hoodie',price:1290000,mat:'polyester',sizes:CL,colors:['#8E2DC6'],isNew:true,photos:[{u:'/photos/shell-1.jpg',c:'#8E2DC6'},{u:'/photos/shell-2.jpg',c:'#8E2DC6'},{u:'/photos/shell-3.jpg',c:'#8E2DC6'}],
   name:{en:'Apex Summit Shell Jacket',ru:'Куртка-ветровка Apex Summit',uz:'Apex Summit yengil kurtka'}},
  {id:18,cat:'jackets',sub:'running',art:'hoodie',price:689000,mat:'fleece',sizes:CL,colors:['#111111'],isNew:true,photos:[{u:'/photos/zip-1.jpg',c:'#111111'},{u:'/photos/zip-2.jpg',c:'#111111'},{u:'/photos/zip-3.jpg',c:'#111111'}],
-  name:{en:'Apex Thermal Zip Jacket',ru:'Термокуртка на молнии Apex',uz:'Apex Thermal zip kurtka'}}
+  name:{en:'Apex Thermal Zip Jacket',ru:'Термокуртка на молнии Apex',uz:'Apex Thermal zip kurtka'}},
+ {id:19,cat:'jackets',sub:'running',art:'coat',price:899000,mat:'polyester',sizes:CL,colors:['#111111'],isNew:true,photos:[{u:'/photos/windbreaker-1.jpg',c:'#111111'},{u:'/photos/windbreaker-2.jpg',c:'#111111'},{u:'/photos/windbreaker-3.jpg',c:'#111111'},{u:'/photos/windbreaker-5.jpg',c:'#111111'}],
+  name:{en:'Apex Trail Windbreaker',ru:'Ветровка Apex Trail',uz:'Apex Trail shamolga chidamli kurtka'}},
+ {id:20,cat:'accessories',sub:'bags',art:'tote',price:349000,mat:'polyester',sizes:null,colors:['#111111'],isNew:true,photos:[{u:'/photos/tote-2.jpg',c:'#111111'},{u:'/photos/tote-3.jpg',c:'#111111'},{u:'/photos/tote-1.jpg',c:'#111111'}],
+  name:{en:'Apex Gear Tote',ru:'Сумка-тоут Apex Gear',uz:'Apex Gear tote sumkasi'}},
+ {id:21,cat:'accessories',sub:'caps',art:'cap',price:129000,mat:'mesh',sizes:null,colors:['#FFFFFF'],isNew:true,photos:[{u:'/photos/bucket-hat-2.jpg',c:'#FFFFFF'},{u:'/photos/bucket-hat-1.jpg',c:'#FFFFFF'}],
+  name:{en:'Apex Trail Bucket Hat',ru:'Панама Apex Trail',uz:'Apex Trail panama'}}
 ];
 const DELIVERY_FEE = CFG.fees.delivery, FREE_OVER = CFG.fees.freeOver, VILOYAT_FEE = CFG.fees.viloyat;
 const REGIONS = ["Qoraqalpog‘iston Respublikasi", "Andijon viloyati", "Buxoro viloyati", "Farg‘ona viloyati", "Jizzax viloyati", "Xorazm viloyati", "Namangan viloyati", "Navoiy viloyati", "Qashqadaryo viloyati", "Samarqand viloyati", "Sirdaryo viloyati", "Surxondaryo viloyati", "Toshkent viloyati"];

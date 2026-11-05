@@ -117,7 +117,8 @@ insert into shop_colors (hex, name, pos) values
   ('#A7685C', 'Terrakota', 12),
   ('#2B2845', 'To‘q binafsha', 13),
   ('#8B6B82', 'Mov', 14),
-  ('#8E2DC6', 'Binafsha', 15)
+  ('#8E2DC6', 'Binafsha', 15),
+  ('#D9D3D0', 'Bej', 16)
 on conflict (hex) do nothing;
 
 insert into shop_sections (key, kind, uz, ru, pos) values
@@ -156,3 +157,17 @@ insert into shop_products (id,cat,sub,art,mat,price,sale,stock,active,sizes,colo
 (17,'jackets','training','hoodie','polyester',1290000,0,null,true,'["S","M","L","XL","XXL"]','["#8E2DC6"]','{"uz":"Apex Summit yengil kurtka","ru":"Куртка-ветровка Apex Summit"}',true,'[{"u":"/photos/shell-1.jpg","c":"#8E2DC6"},{"u":"/photos/shell-2.jpg","c":"#8E2DC6"},{"u":"/photos/shell-3.jpg","c":"#8E2DC6"}]'),
 (18,'jackets','running','hoodie','fleece',689000,0,null,true,'["S","M","L","XL","XXL"]','["#111111"]','{"uz":"Apex Thermal zip kurtka","ru":"Термокуртка на молнии Apex"}',true,'[{"u":"/photos/zip-1.jpg","c":"#111111"},{"u":"/photos/zip-2.jpg","c":"#111111"},{"u":"/photos/zip-3.jpg","c":"#111111"}]')
 on conflict (id) do nothing;
+
+-- Photos for products that already exist (2 hoodie, 3 shorts, 9 jogger pants). Stock and discount you set are kept.
+update shop_products set colors = '["#111111","#6B7280","#1F3A5F","#D9D3D0"]', photos = '[{"u":"/photos/hoodie-2.jpg","c":"#D9D3D0"},{"u":"/photos/hoodie-3.jpg","c":"#D9D3D0"},{"u":"/photos/hoodie-1.jpg","c":"#D9D3D0"}]' where id = 2;
+update shop_products set photos = '[{"u":"/photos/shorts-1.jpg","c":"#111111"},{"u":"/photos/shorts-2.jpg","c":"#111111"},{"u":"/photos/shorts-3.jpg","c":"#111111"}]' where id = 3;
+update shop_products set photos = '[{"u":"/photos/fleece-pants-4.jpg","c":"#111111"},{"u":"/photos/fleece-pants-3.jpg","c":"#111111"},{"u":"/photos/fleece-pants-2.jpg","c":"#111111"},{"u":"/photos/fleece-pants-1.jpg","c":"#111111"},{"u":"/photos/fleece-pants-5.jpg","c":"#111111"}]' where id = 9;
+
+-- New products 19-21: windbreaker, tote bag, bucket hat
+insert into shop_products (id,cat,sub,art,mat,price,sale,stock,active,sizes,colors,name,is_new,photos) values
+(19,'jackets','running','coat','polyester',899000,0,null,true,'["S","M","L","XL","XXL"]','["#111111"]','{"uz":"Apex Trail shamolga chidamli kurtka","ru":"Ветровка Apex Trail"}',true,'[{"u":"/photos/windbreaker-1.jpg","c":"#111111"},{"u":"/photos/windbreaker-2.jpg","c":"#111111"},{"u":"/photos/windbreaker-3.jpg","c":"#111111"},{"u":"/photos/windbreaker-5.jpg","c":"#111111"}]'),
+(20,'accessories','bags','tote','polyester',349000,0,null,true,null,'["#111111"]','{"uz":"Apex Gear tote sumkasi","ru":"Сумка-тоут Apex Gear"}',true,'[{"u":"/photos/tote-2.jpg","c":"#111111"},{"u":"/photos/tote-3.jpg","c":"#111111"},{"u":"/photos/tote-1.jpg","c":"#111111"}]'),
+(21,'accessories','caps','cap','mesh',129000,0,null,true,null,'["#FFFFFF"]','{"uz":"Apex Trail panama","ru":"Панама Apex Trail"}',true,'[{"u":"/photos/bucket-hat-2.jpg","c":"#FFFFFF"},{"u":"/photos/bucket-hat-1.jpg","c":"#FFFFFF"}]')
+on conflict (id) do update set
+  cat = excluded.cat, sub = excluded.sub, art = excluded.art, mat = excluded.mat, price = excluded.price,
+  sizes = excluded.sizes, colors = excluded.colors, name = excluded.name, is_new = excluded.is_new, photos = excluded.photos;
