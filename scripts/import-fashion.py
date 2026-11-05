@@ -1,0 +1,81 @@
+#!/usr/bin/env python3
+"""Import men's sports products from the Kaggle "fashion-product-images-small" dataset into APEX SPORT.
+
+Run on your Mac (needs internet + a free Kaggle login):
+    pip3 install kagglehub pillow
+    python3 scripts/import-fashion.py            # 6 products per type
+    python3 scripts/import-fashion.py --per-type 10
+
+It copies the photos into photos/ and writes supabase-import-fashion.sql. Then run that SQL in Supabase
+(SQL Editor), commit and push. Products get ids from 100 up, so nothing you already have is touched.
+The dataset has no prices: prices are placeholders per type. Edit them in the admin.
+The photos are small (about 60x80 px), so they look soft on a phone: use them as demo content only.
+"""
+import argparse, csv, json, os, sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CL = ["S", "M", "L", "XL", "XXL"]; SH = ["39", "40", "41", "42", "43", "44", "45", "46"]
+# articleType -> (cat, sub, art, mat, sizes, price so'm, uz, ru)
+TYPES = {
+    "Tshirts": ("tshirts", "training", "tee", "dryfit", CL, 179000, "futbolka", "Футболка"),
+    "Sweatshirts": ("hoodies", "lifestyle", "hoodie", "fleece", CL, 429000, "hudi", "Худи"),
+    "Jackets": ("jackets", "training", "coat", "polyester", CL, 699000, "kurtka", "Куртка"),
+    "Shorts": ("shorts", "training", "shorts", "polyester", CL, 219000, "shorti", "Шорты"),
+    "Track Pants": ("tracksuits", "lifestyle", "trousers", "fleece", CL, 329000, "sport shim", "Спортивные брюки"),
+    "Tracksuits": ("tracksuits", "training", "tracksuit", "polyester", CL, 649000, "sport kostyumi", "Спортивный костюм"),
+    "Sports Shoes": ("shoes", "running", "sneaker", "mesh", SH, 599000, "krossovka", "Кроссовки"),
+    "Caps": ("accessories", "caps", "cap", "polyester", None, 99000, "kepka", "Кепка"),
+    "Backpacks": ("accessories", "bags", "duffel", "polyester", None, 279000, "ryukzak", "Рюкзак"),
+}
+# the shop's palette: hex -> rgb. Dataset colours are mapped to the nearest one.
+PALETTE = {"#111111": (17, 17, 17), "#FFFFFF": (255, 255, 255), "#FF5B1F": (255, 91, 31), "#1F3A5F": (31, 58, 95),
+           "#6B7280": (107, 114, 128), "#2F6FED": (47, 111, 237), "#3F5B3A": (63, 91, 58), "#C8F03B": (200, 240, 59),
+           "#B3261E": (179, 38, 30), "#9AA5B1": (154, 165, 177), "#4A2F2B": (74, 47, 43), "#8E2DC6": (142, 45, 198)}
+COLORS = {"black": (17, 17, 17), "white": (255, 255, 255), "off white": (245, 245, 240), "grey": (128, 128, 128),
+          "grey melange": (150, 150, 155), "charcoal": (70, 70, 75), "navy blue": (31, 58, 95), "blue": (47, 111, 237),
+          "teal": (0, 128, 128), "green": (50, 140, 60), "olive": (90, 100, 50), "lime green": (200, 240, 59),
+          "red": (200, 30, 30), "maroon": (110, 20, 30), "orange": (255, 110, 30), "yellow": (240, 210, 40),
+          "brown": (100, 65, 45), "purple": (142, 45, 198), "silver": (190, 190, 195)}
+def nearest(name):
+    rgb = COLORS.get((name or "").strip().lower())
+    if not rgb: return "#111111"
+    return min(PALETTE, key=lambda h: sum((a - b) ** 2 for a, b in zip(PALETTE[h], rgb)))
+def q(s): return "'" + str(s).replace("'", "''") + "'"
+def js(o): return q(json.dumps(o, ensure_ascii=False, separators=(",", ":")))
+
+def main():
+    ap = argparse.ArgumentParser(); ap.add_argument("--per-type", type=int, default=6)
+    ap.add_argument("--path", help="dataset folder (skips the download)"); a = ap.parse_args()
+    path = a.path
+    if not path:
+        import kagglehub
+        path = kagglehub.dataset_download("paramaggarwal/fashion-product-images-small")
+    csvp = img = None
+    for r, _, fs in os.walk(path):
+        if "styles.csv" in fs: csvp = os.path.join(r, "styles.csv")
+        if os.path.basename(r) == "images": img = r
+    if not csvp or not img: sys.exit("styles.csv or images/ not found in " + path)
+    rows = list(csv.DictReader(open(csvp, encoding="utf-8", errors="ignore")))
+    os.makedirs(os.path.join(ROOT, "photos"), exist_ok=True)
+    picked = {}; out = []; nid = 100
+    for r in rows:
+        t = r.get("articleType"); f = os.path.join(img, str(r.get("id")) + ".jpg")
+        if t not in TYPES or r.get("gender") != "Men" or r.get("usage") != "Sports" or not os.path.exists(f): continue
+        if picked.get(t, 0) >= a.per_type: continue
+        picked[t] = picked.get(t, 0) + 1
+        cat, sub, art, mat, sizes, price, uz, ru = TYPES[t]; hexc = nearest(r.get("baseColour"))
+        fn = "fashion-%s.jpg" % r["id"]
+        open(os.path.join(ROOT, "photos", fn), "wb").write(open(f, "rb").read())
+        name = {"uz": "Apex %s %s" % (r.get("baseColour") or "", uz), "ru": "Apex %s" % ru}
+        name["uz"] = " ".join(name["uz"].split()); name["ru"] = "%s Apex %s" % (ru, r["id"][-3:])
+        out.append("(%d,%s,%s,%s,%s,%d,0,null,true,%s,%s,%s,false,%s)" % (
+            nid, q(cat), q(sub), q(art), q(mat), price, js(sizes) if sizes else "null", js([hexc]), js(name),
+            js([{"u": "/photos/" + fn, "c": hexc}])))
+        nid += 1
+    sql = ("-- Generated by scripts/import-fashion.py. Run in Supabase SQL Editor. Safe to run again.\n"
+           "insert into shop_products (id,cat,sub,art,mat,price,sale,stock,active,sizes,colors,name,is_new,photos) values\n"
+           + ",\n".join(out) + "\non conflict (id) do update set cat=excluded.cat, sub=excluded.sub, art=excluded.art, mat=excluded.mat,\n"
+           "  price=excluded.price, sizes=excluded.sizes, colors=excluded.colors, name=excluded.name, photos=excluded.photos;\n")
+    open(os.path.join(ROOT, "supabase-import-fashion.sql"), "w", encoding="utf-8").write(sql)
+    print("Imported %d products: %s" % (len(out), picked))
+main()
