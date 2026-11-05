@@ -295,6 +295,22 @@ h1,h2,h3,.ft-logo{text-transform:uppercase;font-style:italic;font-weight:700!imp
 .choice button.on,.pay button.on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
 .on .dot{border-color:var(--accent)}
 .inp:focus{border-bottom-color:var(--accent)}
+/* footer: store location, sport style */
+.ft{border-top:0;margin-top:48px;padding-top:0}
+.ft-logo{margin-top:6px}
+.ft-k{font:italic 700 30px/1 var(--serif);text-transform:uppercase;letter-spacing:.01em;color:var(--ink);margin:30px 0 14px;display:flex;align-items:center;gap:10px}
+.ft-k::before{content:"";width:8px;height:.85em;background:var(--accent);transform:skewX(-14deg);flex:none}
+.ft-map{border:0;border-radius:0;background:#0E141B}
+.ft-map::before{content:"";position:absolute;left:-26px;top:0;width:90px;height:100%;background:var(--accent);transform:skewX(-20deg);opacity:.0}
+.ft-map::after{content:"";position:absolute;left:0;bottom:0;width:70px;height:4px;background:var(--accent);z-index:2}
+.ft-chip{right:0;bottom:0;border:0;border-radius:0;background:var(--accent);color:#fff;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:11px;padding:10px 18px 10px 24px;clip-path:polygon(12px 0,100% 0,100% 100%,0 100%)}
+.ft-info{margin-top:8px;display:grid;gap:8px}
+.ft-row{background:var(--card);border:0;border-left:4px solid var(--accent);padding:14px 16px}
+.ft-row svg{color:var(--accent)}
+.ft-row small{color:var(--mute);font-weight:600;letter-spacing:.18em}
+.ft-row span,.ft-row a{font-weight:600;font-size:15px}
+.ft-act{margin-top:14px}
+.ft-bot{border-top:1px solid var(--line);padding-top:16px;text-transform:uppercase;font-weight:600}
 </style>
 </head>
 <body>
@@ -532,28 +548,22 @@ function card(p,rail){
 /* Hand-drawn style sketch of the store area. Pure SVG, so it works offline and follows the light/dark theme. */
 function sketchMap(){
   return `<svg viewBox="0 0 360 200" preserveAspectRatio="xMidYMid slice" role="img" aria-label="${t('storeAddr')}" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <g stroke="var(--line)" stroke-width="1.3">
-    <rect x="10" y="14" width="52" height="60" rx="4"/><rect x="78" y="14" width="60" height="26" rx="4"/><rect x="78" y="48" width="60" height="26" rx="4"/><rect x="158" y="14" width="46" height="60" rx="4"/>
-    <rect x="10" y="112" width="52" height="34" rx="4"/><rect x="78" y="112" width="60" height="34" rx="4"/><rect x="158" y="112" width="46" height="34" rx="4"/><rect x="224" y="112" width="56" height="34" rx="4"/><rect x="298" y="112" width="52" height="34" rx="4"/>
-  </g>
-  <g stroke="var(--mute)" opacity=".5">
-    <rect x="228" y="16" width="120" height="62" rx="12" stroke-dasharray="3 5" stroke-width="1.3"/>
-    <circle cx="252" cy="38" r="6"/><circle cx="276" cy="54" r="7"/><circle cx="304" cy="34" r="5.500"/><circle cx="326" cy="58" r="6"/>
-  </g>
-  <g stroke="var(--mute)" stroke-width="5" opacity=".22">
-    <path d="M70 0V88M70 98V200"/><path d="M148 0V88M148 98V200"/><path d="M214 0V88M214 98V200"/><path d="M290 98V200"/>
-  </g>
-  <path d="M-10 99 L370 87" stroke="var(--mute)" stroke-width="9" opacity=".3"/>
-  <path d="M-10 99 L370 87" stroke="var(--bg)" stroke-width="1.2" stroke-dasharray="7 7"/>
-  <path d="M-10 170 C50 150 110 190 190 168 S320 148 370 164" stroke="var(--mute)" stroke-width="12" opacity=".16"/>
-  <path d="M-10 170 C50 150 110 190 190 168 S320 148 370 164" stroke="var(--mute)" stroke-width="1" stroke-dasharray="2 6" opacity=".6"/>
-  <text x="14" y="112.500" transform="rotate(-1.900 14 112.500)" font-size="7.500" letter-spacing="2.200" fill="var(--mute)" stroke="none" font-family="system-ui,sans-serif">AMIR TEMUR</text>
-  <g transform="translate(26 176)" stroke="var(--mute)" opacity=".8"><path d="M0 0H44M0 -3V3M44 -3V3" stroke-width="1.200"/><text x="22" y="-6" text-anchor="middle" font-size="7" fill="var(--mute)" stroke="none" font-family="system-ui,sans-serif">100 m</text></g>
-  <g transform="translate(34 34)" stroke="var(--mute)" opacity=".9"><circle r="12" fill="var(--bg)" stroke-width="1.100"/><path d="M0 7V-7M-3 -3.500L0 -7L3 -3.500" stroke-width="1.100"/><text y="-14" text-anchor="middle" font-size="7" fill="var(--mute)" stroke="none" font-family="system-ui,sans-serif">N</text></g>
-  <circle class="ft-pulse" cx="181" cy="93" r="18" fill="var(--ink)" stroke="none" opacity=".25"/>
-  <circle cx="181" cy="93" r="9.500" fill="var(--ink)" stroke="none"/><circle cx="181" cy="93" r="3.300" fill="var(--bg)" stroke="none"/>
-  <g stroke="none"><rect x="153" y="52" width="56" height="21" rx="10.500" fill="var(--ink)"/><text x="181" y="66" text-anchor="middle" font-size="9.500" letter-spacing="2" fill="var(--bg)" font-family="system-ui,sans-serif">APEX</text></g>
-  <path d="M181 73V83" stroke="var(--ink)" stroke-width="1.300"/>
+  <rect width="360" height="200" fill="#0E141B"/>
+  <g fill="#17212B"><rect x="10" y="14" width="52" height="60"/><rect x="78" y="14" width="60" height="26"/><rect x="78" y="48" width="60" height="26"/><rect x="158" y="14" width="46" height="60"/>
+    <rect x="10" y="112" width="52" height="34"/><rect x="78" y="112" width="60" height="34"/><rect x="158" y="112" width="46" height="34"/><rect x="224" y="112" width="56" height="34"/><rect x="298" y="112" width="52" height="34"/></g>
+  <rect x="228" y="16" width="120" height="62" fill="#12231A"/>
+  <g fill="#1B3326"><circle cx="252" cy="38" r="6"/><circle cx="276" cy="54" r="7"/><circle cx="304" cy="34" r="5.500"/><circle cx="326" cy="58" r="6"/></g>
+  <g stroke="#2A3644" stroke-width="5"><path d="M70 0V88M70 98V200"/><path d="M148 0V88M148 98V200"/><path d="M214 0V88M214 98V200"/><path d="M290 98V200"/></g>
+  <path d="M-10 170 C50 150 110 190 190 168 S320 148 370 164" stroke="#16324A" stroke-width="12"/>
+  <path d="M-10 99 L370 87" stroke="#FF5B1F" stroke-width="7"/>
+  <path d="M-10 99 L370 87" stroke="#0E141B" stroke-width="1.2" stroke-dasharray="7 7"/>
+  <text x="14" y="116" transform="rotate(-1.900 14 116)" font-size="7.500" letter-spacing="2.400" font-weight="700" fill="#FF5B1F" stroke="none" font-family="system-ui,sans-serif">AMIR TEMUR</text>
+  <g transform="translate(26 182)" stroke="#8B93A0"><path d="M0 0H44M0 -3V3M44 -3V3" stroke-width="1.200"/><text x="22" y="-6" text-anchor="middle" font-size="7" fill="#8B93A0" stroke="none" font-family="system-ui,sans-serif">100 m</text></g>
+  <g transform="translate(34 34)" stroke="#8B93A0"><circle r="12" fill="#0E141B" stroke-width="1.100"/><path d="M0 7V-7M-3 -3.500L0 -7L3 -3.500" stroke-width="1.100"/><text y="-15" text-anchor="middle" font-size="7" fill="#8B93A0" stroke="none" font-family="system-ui,sans-serif">N</text></g>
+  <circle class="ft-pulse" cx="181" cy="93" r="18" fill="#FF5B1F" stroke="none" opacity=".35"/>
+  <circle cx="181" cy="93" r="9.500" fill="#FF5B1F" stroke="none"/><circle cx="181" cy="93" r="3.300" fill="#fff" stroke="none"/>
+  <path d="M181 73V83" stroke="#FF5B1F" stroke-width="1.600"/>
+  <g stroke="none"><polygon points="140,50 218,50 212,73 134,73" fill="#FF5B1F"/><text x="176" y="66" text-anchor="middle" font-size="10" font-weight="700" font-style="italic" letter-spacing="1.600" fill="#fff" font-family="system-ui,sans-serif">APEX SPORT</text></g>
 </svg>`;
 }
 /* Home sections: New Products (flag set in the admin panel) and Discounted Products (any product with a discount). */
